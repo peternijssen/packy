@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block headerContent %}
+    <h1>
+        Projects
+        <small>Overview</small>
+    </h1>
+
+    <ol class="breadcrumb">
+        <li><i class="fa fa-tasks"></i> Projects</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box box-danger">
+                <div class="box-body no-padding">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Project name</th>
+                            <th>Stats</th>
+                            <th>Options</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="text-center"><a href="{{ path('packy_project_add') }}"><i class="fa fa-plus"></i> Add project</a></td>
+                            </tr>
+                            {% if projects is empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center">No projects found!</td>
+                                </tr>
+                            {% endif %}
+                            {% for project in projects  %}
+                                <tr>
+                                    <td>{{ project.name }}</td>
+                                    <td>0</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                Options <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="{{ path('packy_project_analyze', { 'projectId': project.id }) }}">Analyze</a></li>
+                                                <li><a href="{{ path('packy_project_edit', { 'projectId': project.id }) }}">Edit</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="{{ path('packy_project_edit', { 'projectId': project.id }) }}" class="delete js-delete-item">Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

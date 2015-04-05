@@ -1,0 +1,47 @@
+AppBundle\Entity\Project:
+    type: entity
+    table: project
+
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: true
+
+    oneToMany:
+        dependencies:
+            targetEntity: Dependency
+            mappedBy: project
+            cascade: ["persist", "merge", "remove"]
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        name:
+            type: string
+            length: 150
+        description:
+            type: text
+            nullable: true
+        repositoryUrl:
+            type: string
+            length: 255
+            column: repository_url
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            column: deleted_at
+            nullable: true

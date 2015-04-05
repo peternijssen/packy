@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Projects
+{% endblock %}
+
+{% block headerContent %}
+    <h1>
+        Projects
+        <small>Add / Edit</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ path('packy_project_overview') }}"><i class="fa fa-tasks"></i> Projects</a></li>
+        <li> Add / Edit</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-danger">
+                {{ form_start(projectForm, { 'attr': { 'id': 'main-form'}}) }}
+                <div class="box-header">
+                    <!-- Potential title -->
+                </div>
+                <div class="box-body">
+                    {{ form_row(projectForm.name) }}
+                    {{ form_row(projectForm.repositoryUrl) }}
+                    {{ form_row(projectForm.description) }}
+                    {{ form_widget(projectForm._token) }}
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                {{ form_end(projectForm, {'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

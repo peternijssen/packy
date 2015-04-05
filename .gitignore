@@ -1,0 +1,16 @@
+/app/bootstrap.php.cache
+/app/cache/*
+!app/cache/.gitkeep
+/app/config/parameters.yml
+/app/logs/*
+!app/logs/.gitkeep
+/app/sessions/*
+!app/sessions/.gitkeep
+/app/phpunit.xml
+/bin/
+/vendor/
+/node_modules/*
+web/css/*
+web/fonts/*
+web/js/*
+web/images/*
