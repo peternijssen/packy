@@ -1,4 +1,4 @@
-Packy
+Packy [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/peternijssen/packy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/peternijssen/packy/?branch=master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73/mini.png)](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73)
 =====
 
 **Description**

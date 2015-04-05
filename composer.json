@@ -1,6 +1,7 @@
 {
-    "name": "peter/packagewatcher",
-    "license": "proprietary",
+    "name": "peternijssen/packy",
+    "license": "MIT",
+    "description": "Packy is an open source tool to validate if your dependencies are up 2 date.",
     "type": "project",
     "autoload": {
         "psr-0": {

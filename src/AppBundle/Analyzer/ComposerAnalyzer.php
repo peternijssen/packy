@@ -39,7 +39,6 @@ class ComposerAnalyzer implements AnalyzerInterface
     public function analyze(Project $project)
     {
         $urlParts = array_filter(explode("/", $project->getRepositoryUrl()));
-        var_dump($urlParts);
 
         $client = new Client();
         $response = $client->get("https://raw.githubusercontent.com/".$urlParts[3]."/".$urlParts[4]."/master/" . $this->packageFile);
