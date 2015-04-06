@@ -15,7 +15,11 @@ Packy is an open source tool to validate if your dependencies are up 2 date. Pac
 Screenshots
 =====
 
-![Packy](http://i60.tinypic.com/2co0bde.png)
+![Packy](http://i60.tinypic.com/2mgtxdj.png)
+
+![Packy](http://i61.tinypic.com/es98o3.png)
+
+![Packy](http://i59.tinypic.com/2dwhh83.png)
 
 Installation
 =====
@@ -27,6 +31,7 @@ Packy is not production ready yet. However, if you want to install it already or
 - Run `composer install` to install php dependencies
 - Make sure a database is present and the connection has been set in `app/config/parameters.yml`
 - Run `php app/console doctrine:schema:update --force`
+- Register your account at http://url/users/overview
 
 Contributing
 =====

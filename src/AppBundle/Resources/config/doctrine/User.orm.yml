@@ -1,0 +1,39 @@
+AppBundle\Entity\User:
+    type: entity
+    table: user
+
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: true
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        firstName:
+            type: string
+            nullable: true
+            column: first_name
+        lastName:
+            type: string
+            nullable: true
+            column: last_name
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            column: deleted_at
+            nullable: true

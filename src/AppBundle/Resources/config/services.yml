@@ -9,3 +9,7 @@ services:
         class: AppBundle\Repository\ProjectRepository
         arguments:
             - @doctrine.orm.entity_manager
+    packy.repository.user:
+        class: AppBundle\Repository\UserRepository
+        arguments:
+            - @doctrine.orm.entity_manager

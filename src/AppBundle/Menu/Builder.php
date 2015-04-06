@@ -40,6 +40,16 @@ class Builder extends ContainerAware
             )
         );
 
+        $menu->addChild(
+            'Users',
+            array(
+                'route' => 'packy_user_overview',
+                'extras' => array(
+                    'icon' => 'fa-users fa-fw'
+                )
+            )
+        );
+
         return $menu;
     }
 }

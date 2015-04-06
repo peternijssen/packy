@@ -1,0 +1,26 @@
+packy_project_overview:
+    pattern:  /overview
+    defaults: { _controller: AppBundle:Project:overview }
+    methods:  [GET]
+packy_project_add:
+    path:  /projects/add
+    defaults: { _controller: AppBundle:Project:add }
+    methods:  [GET, POST]
+packy_project_analyze:
+    path:  /projects/{projectId}/analyze
+    defaults: { _controller: AppBundle:Project:analyze }
+    methods:  [GET]
+    requirements:
+            projectId:  \d+
+packy_project_edit:
+    path:  /projects/{projectId}/edit
+    defaults: { _controller: AppBundle:Project:edit }
+    methods:  [GET, POST]
+    requirements:
+            projectId:  \d+
+packy_project_delete:
+    path:  /projects/{projectId}/delete
+    defaults: { _controller: AppBundle:Project:delete }
+    methods:  [DELETE]
+    requirements:
+            projectId:  \d+

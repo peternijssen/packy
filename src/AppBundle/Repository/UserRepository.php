@@ -11,29 +11,28 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Project;
+use AppBundle\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
 
-class ProjectRepository
+class UserRepository
 {
-
     /**
      * Entity alias
      *
      * @var string
      */
-    const ENTITY_ALIAS = 'p';
+    const ENTITY_ALIAS = 'u';
 
     /**
      * Entity to use
      *
      * @var string
      */
-    const ENTITY_CLASS = 'AppBundle:Project';
+    const ENTITY_CLASS = 'AppBundle:User';
 
     /**
-     * Object manager
+     * Entity manager
      *
      * @var ObjectManager
      */
@@ -50,7 +49,7 @@ class ProjectRepository
     }
 
     /**
-     * Find all projects
+     * Find all users
      *
      * @param string $sortField
      * @param string $sortOrder
@@ -66,40 +65,40 @@ class ProjectRepository
     }
 
     /**
-     * Create a project
+     * Create an user
      *
-     * @param Project $project
+     * @param User $user
      */
-    public function create(Project $project)
+    public function create(User $user)
     {
-        $this->objectManager->persist($project);
+        $this->objectManager->persist($user);
         $this->objectManager->flush();
     }
 
     /**
-     * Update a project
+     * Update an user
      *
-     * @param Project $project
+     * @param User $user
      */
-    public function update(Project $project)
+    public function update(User $user)
     {
-        $this->objectManager->persist($project);
+        $this->objectManager->persist($user);
         $this->objectManager->flush();
     }
 
     /**
-     * Delete a project
+     * Delete an user
      *
-     * @param Project $project
+     * @param User $user
      */
-    public function delete(Project $project)
+    public function delete(User $user)
     {
-        $this->objectManager->remove($project);
+        $this->objectManager->remove($user);
         $this->objectManager->flush();
     }
 
     /**
-     * get QueryBuilder.
+     * Return a new query builder
      *
      * @return QueryBuilder
      */

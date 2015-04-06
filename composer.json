@@ -24,7 +24,9 @@
         "incenteev/composer-parameter-handler": "2.*",
         "guzzlehttp/guzzle": "5.2.*",
         "knplabs/knp-menu": "2.0.*",
-        "knplabs/knp-menu-bundle": "2.0.*"
+        "knplabs/knp-menu-bundle": "2.0.*",
+        "friendsofsymfony/user-bundle": "2.0.*@dev",
+        "ornicar/gravatar-bundle": "1.1.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.*"

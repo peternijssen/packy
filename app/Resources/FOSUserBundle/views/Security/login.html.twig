@@ -1,0 +1,38 @@
+{% extends '::base_clean.html.twig' %}
+
+{% block content %}
+
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{{ path('fos_user_security_login') }}">Packy</a>
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+            <form action="{{ path('fos_user_security_check') }}" method="post">
+                {% if error %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <i class="fa fa-ban"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Username" autocomplete="off" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+
+                    <input type="password" class="form-control" placeholder="password" id="password" name="_password" autocomplete="off" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div><!-- /.col -->
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            </form>
+        </div><!-- /.login-box-body -->
+    </div>
+{% endblock %}

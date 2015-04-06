@@ -1,3 +1,13 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
 packy_app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /
+
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: packy_project_overview
+        permanent: true
