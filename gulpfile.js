@@ -8,6 +8,7 @@ var size = require('gulp-size');
 var minifycss = require('gulp-minify-css');
 var uglify = require('gulp-uglifyjs');
 var imagemin = require('gulp-imagemin');
+var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
     js: {},
@@ -39,10 +40,12 @@ paths.css = [
 ];
 gulp.task('css', ['bower'], function() {
     return gulp.src(paths.css)
-        .pipe(concat('app.css'))
-        .pipe(gulp.dest(dest.css))
-        .pipe(minifycss())
-        .pipe(rename('app.min.css'))
+        .pipe(sourcemaps.init())
+            .pipe(concat('app.css'))
+            .pipe(gulp.dest(dest.css))
+            .pipe(minifycss())
+            .pipe(rename('app.min.css'))
+        .pipe(sourcemaps.write('./'))
         .pipe(chmod(644))
         .pipe(gulp.dest(dest.css))
         .pipe(size({showFiles: true, title: 'css'}));
@@ -57,10 +60,12 @@ paths.js = [
 ];
 gulp.task('js', ['bower'], function() {
     return gulp.src(paths.js)
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest(dest.js))
-        .pipe(uglify())
-        .pipe(rename('app.min.js'))
+        .pipe(sourcemaps.init())
+            .pipe(concat('app.js'))
+            .pipe(gulp.dest(dest.js))
+            .pipe(uglify())
+            .pipe(rename('app.min.js'))
+        .pipe(sourcemaps.write('./'))
         .pipe(chmod(644))
         .pipe(gulp.dest(dest.js))
         .pipe(size({showFiles: true, title: 'js'}));
