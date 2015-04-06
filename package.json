@@ -19,7 +19,7 @@
     "gulp-sass": "1.3.*",
     "gulp-size": "1.2.*",
     "gulp-sourcemaps": "1.5.*",
-    "gulp-uglifyjs": "0.6.*",
+    "gulp-uglify": "1.1.*",
     "lodash": "3.6.*"
   },
   "license": "proprietary"

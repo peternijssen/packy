@@ -6,7 +6,7 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var size = require('gulp-size');
 var minifycss = require('gulp-minify-css');
-var uglify = require('gulp-uglifyjs');
+var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var sourcemaps = require('gulp-sourcemaps');
 
