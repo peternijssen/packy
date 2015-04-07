@@ -18,19 +18,21 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-danger">
-                <div class="box-header">
-                    <!-- Potential title -->
-                </div>
-                <div class="box-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Status</th>
-                            <th>Package</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#composer" data-toggle="tab">Composer</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="composer">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Package</th>
+                                <th>Current version</th>
+                                <th>Available version</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             {% if project.dependencies is empty %}
                                 <tr>
                                     <td colspan="2" class="text-center">No dependencies found!</td>
@@ -38,15 +40,14 @@
                             {% endif %}
                             {% for dependency in project.dependencies  %}
                                 <tr>
-                                    <td><span class="label label-{{ dependency.isUpdate ? "success" : "danger" }}">{{ dependency.currentVersion }}</span></td>
                                     <td>{{ dependency.package }}</td>
+                                    <td><span class="label label-{{ dependency.isUpdate ? "success" : "danger" }}">{{ dependency.currentVersion }}</span></td>
+                                    <td>TBD</td>
                                 </tr>
                             {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="box-footer">
-                    <!-- Potential footer -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
