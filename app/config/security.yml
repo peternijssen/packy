@@ -27,7 +27,7 @@ security:
                 csrf_provider: form.csrf_provider
                 use_referer: true
             logout: true
-            anonymous: true
+            anonymous: false
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
