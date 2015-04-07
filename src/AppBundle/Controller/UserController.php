@@ -11,7 +11,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
