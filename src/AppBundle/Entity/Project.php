@@ -68,7 +68,7 @@ class Project
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -92,7 +92,7 @@ class Project
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -116,7 +116,7 @@ class Project
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -140,7 +140,7 @@ class Project
     /**
      * Get repositoryUrl
      *
-     * @return string 
+     * @return string
      */
     public function getRepositoryUrl()
     {
@@ -164,7 +164,7 @@ class Project
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -188,7 +188,7 @@ class Project
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -212,7 +212,7 @@ class Project
     /**
      * Get deletedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeletedAt()
     {

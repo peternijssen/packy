@@ -16,7 +16,9 @@ use AppBundle\Entity\Project;
 use GuzzleHttp\Client;
 
 /**
- * @TODO: Refactor
+ * @TODO: Refactor;
+ * Split in multiple, single responsible classes
+ * Separate repository checks etc
  */
 class ComposerAnalyzer implements AnalyzerInterface
 {
@@ -41,12 +43,19 @@ class ComposerAnalyzer implements AnalyzerInterface
         $urlParts = array_filter(explode("/", $project->getRepositoryUrl()));
 
         $client = new Client();
-        $response = $client->get("https://raw.githubusercontent.com/".$urlParts[3]."/".$urlParts[4]."/master/" . $this->packageFile);
+        $response = $client->get(
+            "https://raw.githubusercontent.com/".
+            $urlParts[3]
+            ."/".
+            $urlParts[4]
+            ."/master/".
+            $this->packageFile
+        );
         $lockData = $this->parseJson($response->getBody());
 
         $dependencies = array();
 
-        if(array_key_exists('packages', $lockData)) {
+        if (array_key_exists('packages', $lockData)) {
             foreach ($lockData['packages'] as $package) {
                 $client = new Client();
                 $response = $client->get($this->packageVendor . $package['name'].".json");
@@ -74,7 +83,7 @@ class ComposerAnalyzer implements AnalyzerInterface
             }
         }
 
-        if(array_key_exists('packages-dev', $lockData)) {
+        if (array_key_exists('packages-dev', $lockData)) {
             foreach ($lockData['packages-dev'] as $package) {
                 $client = new Client();
                 $response = $client->get($this->packageVendor . $package['name'].".json");
@@ -105,6 +114,13 @@ class ComposerAnalyzer implements AnalyzerInterface
         return $dependencies;
     }
 
+    /**
+     * Parse JSON data
+     *
+     * @param string $data
+     *
+     * @return mixed
+     */
     private function parseJson($data)
     {
         $parsedData = json_decode($data, true);
@@ -114,6 +130,13 @@ class ComposerAnalyzer implements AnalyzerInterface
         return $parsedData;
     }
 
+    /**
+     * Find latest version
+     *
+     * @param array $versions
+     *
+     * @return string
+     */
     private function getNewestVersion($versions = array())
     {
         $latestVersion = '0.0.0';
@@ -140,7 +163,7 @@ class ComposerAnalyzer implements AnalyzerInterface
         // Remove the package link (alpha, RC, beta, etc)
         list($versionCandidate) = explode('-', $rawVersion);
         // Strip the 'v' prefix if exists
-        $versionCandidate = str_replace('v','',$versionCandidate);
+        $versionCandidate = str_replace('v', '', $versionCandidate);
         // Transform the ranges
         if (strpos($versionCandidate, ',') !== false) {
             $versionsRange = explode(',', $versionCandidate);
@@ -168,7 +191,8 @@ class ComposerAnalyzer implements AnalyzerInterface
      *
      * @return string $version
      */
-    public function determineVersionValue($rawVersion) {
+    public function determineVersionValue($rawVersion)
+    {
         // Transform any wildcard into possible highest value
         // and remove any space(s)
         $version = str_replace(array('*',' '), array('999',''), $rawVersion);

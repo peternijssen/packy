@@ -18,6 +18,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class InstallCommand extends ContainerAwareCommand
 {
+    /**
+     * Configure the command
+     */
     protected function configure()
     {
         $this
@@ -25,6 +28,13 @@ class InstallCommand extends ContainerAwareCommand
             ->setDescription('Install packy');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @throws \Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find('doctrine:schema:update');

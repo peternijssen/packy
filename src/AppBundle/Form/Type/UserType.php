@@ -37,9 +37,11 @@ class UserType extends BaseType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'AppBundle\Entity\User'
-        ));
+            )
+        );
     }
 
     /**

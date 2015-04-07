@@ -20,6 +20,9 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class ReinstallCommand extends ContainerAwareCommand
 {
+    /**
+     * Configure the command
+     */
     protected function configure()
     {
         $this
@@ -27,10 +30,20 @@ class ReinstallCommand extends ContainerAwareCommand
             ->setDescription('Reinstall packy');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @throws \Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
-        $question = new ConfirmationQuestion('Do you really want to reinstall packy? All data will be lost. (y/n) ', false);
+        $question = new ConfirmationQuestion(
+            'Do you really want to reinstall packy? All data will be lost. (y/n) ',
+            false
+        );
 
         if (!$helper->ask($input, $output, $question)) {
             return;

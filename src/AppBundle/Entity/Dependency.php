@@ -57,7 +57,7 @@ class Dependency
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -81,7 +81,7 @@ class Dependency
     /**
      * Get currentVersion
      *
-     * @return string 
+     * @return string
      */
     public function getCurrentVersion()
     {
@@ -129,7 +129,7 @@ class Dependency
     /**
      * Get package
      *
-     * @return string 
+     * @return string
      */
     public function getPackage()
     {
@@ -153,7 +153,7 @@ class Dependency
     /**
      * Get manager
      *
-     * @return string 
+     * @return string
      */
     public function getManager()
     {

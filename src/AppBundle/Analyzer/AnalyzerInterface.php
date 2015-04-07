@@ -15,10 +15,8 @@ use AppBundle\Entity\Project;
 
 interface AnalyzerInterface
 {
-
     /**
      * @param Project $project
      */
     public function analyze(Project $project);
-
 }

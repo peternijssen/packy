@@ -32,9 +32,12 @@ class ProjectController extends Controller
         $projectRepository = $this->get('packy.repository.project');
         $projects = $projectRepository->findAll();
 
-        return $this->render('AppBundle:Project:overview.html.twig', array(
-            'projects' => $projects
-        ));
+        return $this->render(
+            'AppBundle:Project:overview.html.twig',
+            array(
+                'projects' => $projects
+            )
+        );
     }
 
     /**
@@ -59,9 +62,12 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render("AppBundle:Project:form.html.twig", array(
-            'projectForm' => $projectForm->createView()
-        ));
+        return $this->render(
+            "AppBundle:Project:form.html.twig",
+            array(
+                'projectForm' => $projectForm->createView()
+            )
+        );
     }
 
     /**
@@ -76,7 +82,7 @@ class ProjectController extends Controller
      */
     public function analyzeAction(Request $request, Project $project)
     {
-        //@TODO: Move to service
+        //@TODO: Should be done by a Command
         $analyzer = $this->get('packy.analyzer.generic_analyzer');
         $dependencies = $analyzer->analyzeForManager($project, 'composer');
         $project->setDependencies($dependencies);
@@ -84,9 +90,12 @@ class ProjectController extends Controller
         $projectRepository = $this->get('packy.repository.project');
         $projectRepository->update($project);
 
-        return $this->render("AppBundle:Project:analyze.html.twig", array(
-            'project' => $project
-        ));
+        return $this->render(
+            "AppBundle:Project:analyze.html.twig",
+            array(
+                'project' => $project
+            )
+        );
     }
 
     /**
@@ -113,9 +122,12 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render("AppBundle:Project:form.html.twig", array(
-            'projectForm' => $projectForm->createView()
-        ));
+        return $this->render(
+            "AppBundle:Project:form.html.twig",
+            array(
+                'projectForm' => $projectForm->createView()
+            )
+        );
     }
 
     /**

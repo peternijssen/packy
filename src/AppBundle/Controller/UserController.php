@@ -33,9 +33,12 @@ class UserController extends Controller
         $userRepository = $this->get('packy.repository.user');
         $users = $userRepository->findAll();
 
-        return $this->render('AppBundle:User:overview.html.twig', array(
-            'users' => $users
-        ));
+        return $this->render(
+            'AppBundle:User:overview.html.twig',
+            array(
+                'users' => $users
+            )
+        );
     }
 
     /**
@@ -53,7 +56,6 @@ class UserController extends Controller
         if ($request->isMethod('POST')) {
             $userForm->handleRequest($request);
             if ($userForm->isValid()) {
-
                 $user->setEnabled(true);
 
                 $userRepository = $this->get('packy.repository.user');
@@ -63,9 +65,12 @@ class UserController extends Controller
             }
         }
 
-        return $this->render("AppBundle:User:form.html.twig", array(
-            'userForm' => $userForm->createView()
-        ));
+        return $this->render(
+            "AppBundle:User:form.html.twig",
+            array(
+                'userForm' => $userForm->createView()
+            )
+        );
     }
 
     /**
@@ -74,7 +79,7 @@ class UserController extends Controller
      * Edit user
      *
      * @param Request $request A Request instance
-     * @param User $user
+     * @param User    $user
      *
      * @return Response A Response instance
      */
@@ -92,9 +97,12 @@ class UserController extends Controller
             }
         }
 
-        return $this->render("AppBundle:User:form.html.twig", array(
-            'userForm' => $userForm->createView()
-        ));
+        return $this->render(
+            "AppBundle:User:form.html.twig",
+            array(
+                'userForm' => $userForm->createView()
+            )
+        );
     }
 
     /**
