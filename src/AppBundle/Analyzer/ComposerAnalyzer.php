@@ -58,8 +58,8 @@ class ComposerAnalyzer implements AnalyzerInterface
         if (array_key_exists('packages', $lockData)) {
             foreach ($lockData['packages'] as $package) {
                 $client = new Client();
-                $response = $client->get($this->packageVendor . $package['name'].".json");
-                $data  = $this->parseJson($response->getBody());
+                $response = $client->get($this->packageVendor.$package['name'].".json");
+                $data = $this->parseJson($response->getBody());
 
                 $newestVersion = $this->getNewestVersion(array_keys($data['package']['versions']));
 
@@ -86,8 +86,8 @@ class ComposerAnalyzer implements AnalyzerInterface
         if (array_key_exists('packages-dev', $lockData)) {
             foreach ($lockData['packages-dev'] as $package) {
                 $client = new Client();
-                $response = $client->get($this->packageVendor . $package['name'].".json");
-                $data  = $this->parseJson($response->getBody());
+                $response = $client->get($this->packageVendor.$package['name'].".json");
+                $data = $this->parseJson($response->getBody());
 
                 $newestVersion = $this->getNewestVersion(array_keys($data['package']['versions']));
 
@@ -195,7 +195,7 @@ class ComposerAnalyzer implements AnalyzerInterface
     {
         // Transform any wildcard into possible highest value
         // and remove any space(s)
-        $version = str_replace(array('*',' '), array('999',''), $rawVersion);
+        $version = str_replace(array('*', ' '), array('999', ''), $rawVersion);
         // Handle operator
         if (preg_match('/^([\~\>\<\=\!]+)([0-9\.]+)$/', $version, $m) && count($m) == 3) {
             $operator = $m[1];
@@ -204,11 +204,11 @@ class ComposerAnalyzer implements AnalyzerInterface
             $versionAnnotations = explode('.', $version);
             if (count($versionAnnotations) == 3) {
                 // Everything ok
-                list($major,$minor,$patch) = $versionAnnotations;
+                list($major, $minor, $patch) = $versionAnnotations;
             } else {
                 switch (count($versionAnnotations)) {
                     case 2:
-                        list($major,$minor) = $versionAnnotations;
+                        list($major, $minor) = $versionAnnotations;
                         $patch = 999;
                         break;
 
@@ -220,15 +220,15 @@ class ComposerAnalyzer implements AnalyzerInterface
                 }
             }
             // Determine the closest possible value
-            if (strpos($operator, '>')!==false || strpos($operator, '!')!==false || strpos($operator, '~')!== false) {
+            if (strpos($operator, '>') !== false || strpos($operator, '!') !== false || strpos($operator, '~') !== false) {
                 // Increase the patch and minor version to the max
                 $version = $major.'.999.999';
             } elseif (strpos($operator, '<') !== false) {
                 // Decrease the patch and minor version to the min
                 if ($major == 0 && $minor > 0) {
-                    $version = $major.'.'.(((int)$minor)-1).'.999';
+                    $version = $major.'.'.(((int) $minor) - 1).'.999';
                 } elseif ($patch == 0) {
-                    $version = (((int)$major)-1).'.999.999';
+                    $version = (((int) $major) - 1).'.999.999';
                 } else {
                     $version = $major.'.0.0';
                 }
