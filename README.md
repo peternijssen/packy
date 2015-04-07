@@ -5,10 +5,10 @@ Packy [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/peternijssen/pac
 
 Packy is an open source tool to validate if your dependencies are up 2 date. Packy is still in development and is not production ready yet.
 
-**Current validators**
+**Current analyzers**
 - None stable yet
 
-**Upcoming validators**
+**Upcoming analyzers**
 - Composer
 - Bower
 
