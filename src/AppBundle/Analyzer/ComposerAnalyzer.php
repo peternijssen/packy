@@ -70,14 +70,14 @@ class ComposerAnalyzer implements AnalyzerInterface
                     $dependency->setManager('composer');
                     $dependency->setPackage($package['name']);
                     $dependency->setCurrentVersion($currentVersion);
-                    $dependency->setIsUpdate(true);
+                    $dependency->setUpdate(true);
                     $dependencies[] = $dependency;
                 } else {
                     $dependency = new Dependency();
                     $dependency->setManager('composer');
                     $dependency->setPackage($package['name']);
                     $dependency->setCurrentVersion($currentVersion);
-                    $dependency->setIsUpdate(false);
+                    $dependency->setUpdate(false);
                     $dependencies[] = $dependency;
                 }
             }
@@ -98,14 +98,14 @@ class ComposerAnalyzer implements AnalyzerInterface
                     $dependency->setManager('composer');
                     $dependency->setPackage($package['name']);
                     $dependency->setCurrentVersion($currentVersion);
-                    $dependency->setIsUpdate(true);
+                    $dependency->setUpdate(true);
                     $dependencies[] = $dependency;
                 } else {
                     $dependency = new Dependency();
                     $dependency->setManager('composer');
                     $dependency->setPackage($package['name']);
                     $dependency->setCurrentVersion($currentVersion);
-                    $dependency->setIsUpdate(false);
+                    $dependency->setUpdate(false);
                     $dependencies[] = $dependency;
                 }
             }

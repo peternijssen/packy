@@ -167,7 +167,7 @@ class Dependency
      *
      * @return Dependency
      */
-    public function setIsUpdate($isUpdate)
+    public function setUpdate($isUpdate)
     {
         $this->isUpdate = $isUpdate;
 
@@ -179,7 +179,7 @@ class Dependency
      *
      * @return boolean
      */
-    public function getIsUpdate()
+    public function isUpdate()
     {
         return $this->isUpdate;
     }
