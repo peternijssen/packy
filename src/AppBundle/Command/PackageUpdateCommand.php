@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AnalyzeCommand extends ContainerAwareCommand
+class PackageUpdateCommand extends ContainerAwareCommand
 {
     /**
      * Configure the command
@@ -23,8 +23,8 @@ class AnalyzeCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('packy:analyze')
-            ->setDescription('Analyze all projects');
+            ->setName('packy:package:update')
+            ->setDescription('Update the version of the package');
     }
 
     /**
@@ -36,17 +36,14 @@ class AnalyzeCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $projectRepository = $this->getContainer()->get('packy.repository.project');
-        $projects = $projectRepository->findAll();
+        $packageRepository = $this->getContainer()->get('packy.repository.package');
+        $packages = $packageRepository->findAll();
 
-        foreach ($projects as $project) {
+        foreach ($packages as $package) {
             $analyzer = $this->getContainer()->get('packy.analyzer.generic_analyzer');
-            $dependencies = $analyzer->analyzeForManager($project, 'composer');
-            $project->setDependencies($dependencies);
-
-            $projectRepository->update($project);
-
-            $output->writeln("<info>Project " . $project->getName() . " updated!</info>");
+            $package = $analyzer->analyzePackage($package, $package->getManager());
+            $packageRepository->update($package);
+            $output->writeln("<info>Package ".$package->getPackage()." updated!</info>");
         }
     }
 }

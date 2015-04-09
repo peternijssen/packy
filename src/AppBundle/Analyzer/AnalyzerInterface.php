@@ -11,12 +11,14 @@
 
 namespace AppBundle\Analyzer;
 
-use AppBundle\Entity\Project;
+use AppBundle\Entity\Package;
 
 interface AnalyzerInterface
 {
     /**
-     * @param Project $project
+     * @param Package $package
+     *
+     * @return array
      */
-    public function analyze(Project $project);
+    public function analyzePackage(Package $package);
 }

@@ -40,9 +40,9 @@
                             {% endif %}
                             {% for dependency in project.dependencies  %}
                                 <tr>
-                                    <td>{{ dependency.package }}</td>
-                                    <td><span class="label label-{{ dependency.isUpdate ? "success" : "danger" }}">{{ dependency.currentVersion }}</span></td>
-                                    <td>TBD</td>
+                                    <td>{{ dependency.package.package }}</td>
+                                    <td><span class="label label-{{ dependency.isUpdate ? "success" : "danger" }}">{{ dependency.rawVersion }}</span></td>
+                                    <td>{{ dependency.package.latestVersion }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

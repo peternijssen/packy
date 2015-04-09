@@ -10,25 +10,27 @@ AppBundle\Entity\Dependency:
             name: project_id
             referencedColumnName: id
           cascade: ["persist"]
+        package:
+          targetEntity: Package
+          inversedBy: dependencies
+          joinColumn:
+            name: package_id
+            referencedColumnName: id
+          cascade: ["persist"]
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
 
     fields:
-        package:
-            type: string
-            length: 255
-        manager:
-            type: string
-            length: 255
+        rawVersion:
+            type: text
+            nullable: true
+            column: raw_version
         currentVersion:
             type: text
             nullable: true
             column: current_version
-        isUpdate:
-            type: boolean
-            column: is_update
         createdAt:
             type: datetime
             column: created_at

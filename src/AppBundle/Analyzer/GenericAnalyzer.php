@@ -11,7 +11,7 @@
 
 namespace AppBundle\Analyzer;
 
-use AppBundle\Entity\Project;
+use AppBundle\Entity\Package;
 
 class GenericAnalyzer
 {
@@ -31,15 +31,15 @@ class GenericAnalyzer
     }
 
     /**
-     * @param Project $project
+     * @param Package $package
      * @param string  $manager
      *
      * @return array
      */
-    public function analyzeForManager(Project $project, $manager)
+    public function analyzePackage(Package $package, $manager)
     {
         $analyzer = $this->analyzerFactory->createForManager($manager);
 
-        return $analyzer->analyze($project);
+        return $analyzer->analyzePackage($package);
     }
 }

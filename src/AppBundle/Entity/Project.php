@@ -253,20 +253,4 @@ class Project
     {
         return $this->dependencies;
     }
-
-    /**
-     * Set dependencies
-     *
-     * @TODO: temp
-     *
-     * @param array $dependencies
-     */
-    public function setDependencies(array $dependencies)
-    {
-        foreach ($dependencies as $dependency) {
-            $dependency->setProject($this);
-        }
-
-        $this->dependencies = $dependencies;
-    }
 }

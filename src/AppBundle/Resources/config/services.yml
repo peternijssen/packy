@@ -9,7 +9,19 @@ services:
         class: AppBundle\Repository\ProjectRepository
         arguments:
             - @doctrine.orm.entity_manager
+    packy.repository.package:
+        class: AppBundle\Repository\PackageRepository
+        arguments:
+            - @doctrine.orm.entity_manager
     packy.repository.user:
         class: AppBundle\Repository\UserRepository
         arguments:
             - @doctrine.orm.entity_manager
+    packy.manager.manager_factory:
+        class: AppBundle\Manager\ManagerFactory
+    packy.manager.generic_manager:
+        class: AppBundle\Manager\GenericManager
+        arguments:
+            - @packy.manager.manager_factory
+    packy.service.version_formatter:
+        class: AppBundle\Service\VersionFormatter

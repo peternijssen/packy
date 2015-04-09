@@ -1,0 +1,42 @@
+AppBundle\Entity\Package:
+    type: entity
+    table: package
+
+    oneToMany:
+        dependencies:
+            targetEntity: Dependency
+            mappedBy: package
+            cascade: ["persist", "merge", "remove"]
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        package:
+            type: string
+            length: 255
+        manager:
+            type: string
+            length: 255
+        latestVersion:
+            type: text
+            nullable: true
+            column: latest_version
+        lastChecktAt:
+            type: datetime
+            nullable: true
+            column: last_checked_at
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update

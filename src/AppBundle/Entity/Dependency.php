@@ -22,27 +22,12 @@ class Dependency
     /**
      * @var string
      */
-    private $package;
-
-    /**
-     * @var string
-     */
-    private $manager;
+    private $rawVersion;
 
     /**
      * @var string
      */
     private $currentVersion;
-
-    /**
-     * @var Project
-     */
-    private $project;
-
-    /**
-     * @var bool
-     */
-    private $isUpdate;
 
     /**
      * @var \DateTime
@@ -55,6 +40,16 @@ class Dependency
     private $updatedAt;
 
     /**
+     * @var Project
+     */
+    private $project;
+
+    /**
+     * @var Package
+     */
+    private $package;
+
+    /**
      * Get id
      *
      * @return integer
@@ -62,6 +57,30 @@ class Dependency
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set rawVersion
+     *
+     * @param string $rawVersion
+     *
+     * @return Dependency
+     */
+    public function setRawVersion($rawVersion)
+    {
+        $this->rawVersion = $rawVersion;
+
+        return $this;
+    }
+
+    /**
+     * Get rawVersion
+     *
+     * @return string
+     */
+    public function getRawVersion()
+    {
+        return $this->rawVersion;
     }
 
     /**
@@ -89,109 +108,13 @@ class Dependency
     }
 
     /**
-     * Set project
-     *
-     * @param Project $project
-     *
-     * @return Dependency
-     */
-    public function setProject(Project $project = null)
-    {
-        $this->project = $project;
-
-        return $this;
-    }
-
-    /**
-     * Get project
-     *
-     * @return Project
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
-
-    /**
-     * Set package
-     *
-     * @param string $package
-     *
-     * @return Dependency
-     */
-    public function setPackage($package)
-    {
-        $this->package = $package;
-
-        return $this;
-    }
-
-    /**
-     * Get package
-     *
-     * @return string
-     */
-    public function getPackage()
-    {
-        return $this->package;
-    }
-
-    /**
-     * Set manager
-     *
-     * @param string $manager
-     *
-     * @return Dependency
-     */
-    public function setManager($manager)
-    {
-        $this->manager = $manager;
-
-        return $this;
-    }
-
-    /**
-     * Get manager
-     *
-     * @return string
-     */
-    public function getManager()
-    {
-        return $this->manager;
-    }
-
-    /**
-     * Set isUpdate
-     *
-     * @param boolean $isUpdate
-     *
-     * @return Dependency
-     */
-    public function setUpdate($isUpdate)
-    {
-        $this->isUpdate = $isUpdate;
-
-        return $this;
-    }
-
-    /**
-     * Get isUpdate
-     *
-     * @return boolean
-     */
-    public function isUpdate()
-    {
-        return $this->isUpdate;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
      *
      * @return Dependency
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -215,7 +138,7 @@ class Dependency
      *
      * @return Dependency
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
@@ -230,5 +153,67 @@ class Dependency
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set project
+     *
+     * @param Project $project
+     *
+     * @return Dependency
+     */
+    public function setProject(Project $project = null)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+    
+    /**
+     * Set package
+     *
+     * @param Package $package
+     *
+     * @return Dependency
+     */
+    public function setPackage(Package $package = null)
+    {
+        $this->package = $package;
+
+        return $this;
+    }
+
+    /**
+     * Get package
+     *
+     * @return Package
+     */
+    public function getPackage()
+    {
+        return $this->package;
+    }
+
+    /**
+     * Check if dependency is up 2 date
+     *
+     * @return bool
+     */
+    public function isUpdate()
+    {
+        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) < 0) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -9,75 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Analyzer;
+namespace AppBundle\Service;
 
-use AppBundle\Entity\Package;
-use GuzzleHttp\Client as GuzzleClient;
-
-class ComposerAnalyzer implements AnalyzerInterface
+class VersionFormatter
 {
-
-    /**
-     * @var string
-     */
-    private $packageVendor = 'https://packagist.org/packages/';
-
-    /**
-     * @param Package $package
-     *
-     * @return array
-     */
-    public function analyzePackage(Package $package)
-    {
-        $client = new GuzzleClient();
-        $response = $client->get($this->packageVendor.$package->getPackage().".json");
-        $data = $this->parseJson($response->getBody());
-
-        $newestVersion = $this->getNewestVersion(array_keys($data['package']['versions']));
-        $package->setLatestVersion($newestVersion);
-        $package->setLastChecktAt(new \DateTime());
-
-        return $package;
-    }
-
-    /**
-     * Parse JSON data
-     *
-     * @param string $data
-     *
-     * @return mixed
-     */
-    private function parseJson($data)
-    {
-        $parsedData = json_decode($data, true);
-        if ($parsedData === false) {
-            throw new \RuntimeException('Unable to parse json file');
-        }
-
-        return $parsedData;
-    }
-
-    /**
-     * Find latest version
-     *
-     * @param array $versions
-     *
-     * @return string
-     */
-    private function getNewestVersion($versions = array())
-    {
-        $latestVersion = '0.0.0';
-        foreach ($versions as $version) {
-            $nowVersion = $this->normalizeVersion($version);
-            if (version_compare($latestVersion, $nowVersion) >= 0) {
-                continue;
-            }
-            $latestVersion = $nowVersion;
-        }
-
-        return $latestVersion;
-    }
-
     /**
      * Normalize vendor version
      *
