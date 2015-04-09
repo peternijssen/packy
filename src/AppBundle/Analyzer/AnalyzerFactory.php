@@ -22,7 +22,7 @@ class AnalyzerFactory
      */
     public function createForManager($manager)
     {
-        $class = "AppBundle\\Analyzer\\".ucfirst(strtolower($manager)) . 'Analyzer';
+        $class = "AppBundle\\Analyzer\\".ucfirst(strtolower($manager)).'Analyzer';
         if (!class_exists($class)) {
             throw new \InvalidArgumentException('Unknown manager: '.$manager);
         }

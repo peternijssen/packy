@@ -25,7 +25,7 @@ class ComposerAnalyzer implements AnalyzerInterface
     /**
      * @param Package $package
      *
-     * @return array
+     * @return Package
      */
     public function analyzePackage(Package $package)
     {
