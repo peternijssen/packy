@@ -1,0 +1,7 @@
+services:
+    packy.analyzer.analyzer_factory:
+        class: AppBundle\Analyzer\AnalyzerFactory
+    packy.analyzer.generic_analyzer:
+        class: AppBundle\Analyzer\GenericAnalyzer
+        arguments:
+            - @packy.analyzer.analyzer_factory

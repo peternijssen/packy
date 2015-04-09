@@ -1,0 +1,7 @@
+services:
+    packy.manager.manager_factory:
+        class: AppBundle\Manager\ManagerFactory
+    packy.manager.generic_manager:
+        class: AppBundle\Manager\GenericManager
+        arguments:
+            - @packy.manager.manager_factory

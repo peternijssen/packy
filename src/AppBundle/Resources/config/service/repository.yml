@@ -1,0 +1,13 @@
+services:
+    packy.repository.project:
+        class: AppBundle\Repository\ProjectRepository
+        arguments:
+            - @doctrine.orm.entity_manager
+    packy.repository.package:
+        class: AppBundle\Repository\PackageRepository
+        arguments:
+            - @doctrine.orm.entity_manager
+    packy.repository.user:
+        class: AppBundle\Repository\UserRepository
+        arguments:
+            - @doctrine.orm.entity_manager

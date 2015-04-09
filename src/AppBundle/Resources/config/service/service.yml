@@ -1,0 +1,3 @@
+services:
+    packy.service.version_formatter:
+        class: AppBundle\Service\VersionFormatter
