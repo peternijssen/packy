@@ -45,7 +45,7 @@ class GithubManager implements ManagerInterface
      *
      * @param string $data
      *
-     * @return mixed
+     * @return string
      */
     protected function parseJson($data)
     {

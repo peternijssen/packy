@@ -59,7 +59,7 @@ class UserRepository
     public function findAll($sortField = 'createdAt', $sortOrder = 'DESC')
     {
         return $this->getQueryBuilder()
-            ->orderBy(self::ENTITY_ALIAS . '.' . $sortField, $sortOrder)
+            ->orderBy(self::ENTITY_ALIAS.'.'.$sortField, $sortOrder)
             ->getQuery()
             ->getResult();
     }
