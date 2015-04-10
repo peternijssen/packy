@@ -11,7 +11,6 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Package;
 use AppBundle\Entity\Project;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
