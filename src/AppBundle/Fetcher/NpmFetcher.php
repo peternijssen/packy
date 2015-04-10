@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Formatter;
+namespace AppBundle\Fetcher;
 
-class ComposerFormatter extends AbstractFormatter
+class NpmFetcher extends AbstractFetcher
 {
     /**
      * @var string
      */
-    private $packageFileName = 'composer.json';
+    private $packageFileName = 'package.json';
 
     /**
      * Get the package file name
@@ -29,19 +29,18 @@ class ComposerFormatter extends AbstractFormatter
     }
 
     /**
-     * Format the dependencies
+     * Fetch the dependencies
      *
      * @param string $fileContent
      *
      * @return array
      */
-    public function formatDependencies($fileContent)
+    public function fetchDependencies($fileContent)
     {
         if (array_key_exists('content', $fileContent)) {
             $decoded = $this->parseJson(base64_decode($fileContent['content']));
 
-            $dependencies = array_merge($decoded['require'], $decoded['require-dev']);
-            unset($dependencies['php']);
+            $dependencies = array_merge($decoded['dependencies'], $decoded['devDependencies']);
 
             return $dependencies;
         }

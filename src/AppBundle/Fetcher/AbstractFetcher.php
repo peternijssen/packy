@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Formatter;
+namespace AppBundle\Fetcher;
 
-abstract class AbstractFormatter implements FormatterInterface
+abstract class AbstractFetcher implements FetcherInterface
 {
     /**
      * Parse JSON data

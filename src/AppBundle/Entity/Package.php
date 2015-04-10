@@ -25,7 +25,7 @@ class Package
     /**
      * @var string
      */
-    private $package;
+    private $name;
 
     /**
      * @var string
@@ -76,27 +76,27 @@ class Package
     }
 
     /**
-     * Set package
+     * Set name
      *
-     * @param string $package
+     * @param string $name
      *
      * @return Package
      */
-    public function setPackage($package)
+    public function setName($name)
     {
-        $this->package = $package;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get package
+     * Get name
      *
      * @return string
      */
-    public function getPackage()
+    public function getName()
     {
-        return $this->package;
+        return $this->name;
     }
 
     /**

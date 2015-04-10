@@ -14,13 +14,13 @@ namespace AppBundle\Analyzer;
 use AppBundle\Entity\Package;
 use GuzzleHttp\Client as GuzzleClient;
 
-class ComposerAnalyzer implements AnalyzerInterface
+class NpmAnalyzer implements AnalyzerInterface
 {
 
     /**
      * @var string
      */
-    private $packageVendor = 'https://packagist.org/packages/';
+    private $packageVendor = 'https://registry.npmjs.org/';
 
     /**
      * @param Package $package
@@ -30,10 +30,10 @@ class ComposerAnalyzer implements AnalyzerInterface
     public function analyzePackage(Package $package)
     {
         $client = new GuzzleClient();
-        $response = $client->get($this->packageVendor.$package->getName().".json");
+        $response = $client->get($this->packageVendor.$package->getName());
         $data = $this->parseJson($response->getBody());
 
-        $newestVersion = $this->getLatestVersion(array_keys($data['package']['versions']));
+        $newestVersion = $data['dist-tags']['latest'];
         $package->setLatestVersion($newestVersion);
         $package->setLastChecktAt(new \DateTime());
 
@@ -55,28 +55,5 @@ class ComposerAnalyzer implements AnalyzerInterface
         }
 
         return $parsedData;
-    }
-
-    /**
-     * Find latest version
-     *
-     * @param array $versions
-     *
-     * @return string
-     */
-    private function getLatestVersion($versions = array())
-    {
-        $latestVersion = '0.0.0';
-        foreach ($versions as $version) {
-            $version = ltrim($version, 'v');
-            if (preg_match('/^[0-9.]+$/', $version)) {
-                if (version_compare($latestVersion, $version) >= 0) {
-                    continue;
-                }
-                $latestVersion = $version;
-            }
-        }
-
-        return $latestVersion;
     }
 }

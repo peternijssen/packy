@@ -14,7 +14,7 @@ AppBundle\Entity\Package:
             generator: { strategy: AUTO }
 
     fields:
-        package:
+        name:
             type: string
             length: 255
         manager:

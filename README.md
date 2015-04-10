@@ -6,10 +6,10 @@ Packy [![Build Status](https://scrutinizer-ci.com/g/peternijssen/packy/badges/bu
 Packy is an open source tool to validate if your dependencies are up 2 date. Packy is still in development and is not production ready yet.
 
 **Current analyzers**
-- None stable yet
+- Composer
+- Npm
 
 **Upcoming analyzers**
-- Composer
 - Bower
 
 Screenshots

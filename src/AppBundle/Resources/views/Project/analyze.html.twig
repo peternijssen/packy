@@ -23,6 +23,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#composer" data-toggle="tab">Composer</a></li>
+                    <li><a href="#npm" data-toggle="tab">NPM</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="composer">
@@ -35,14 +36,39 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% if project.dependencies is empty %}
+                            {% if composer is empty %}
                                 <tr>
                                     <td colspan="2" class="text-center">No dependencies found!</td>
                                 </tr>
                             {% endif %}
-                            {% for dependency in project.dependencies  %}
+                            {% for dependency in composer  %}
                                 <tr>
-                                    <td>{{ dependency.package.package }}</td>
+                                    <td>{{ dependency.package.name }}</td>
+                                    <td>{{ macro.statusLabel(dependency.rawVersion, dependency.status) }}</td>
+                                    <td>{{ dependency.package.latestVersion }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="npm">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Package</th>
+                                <th>Current version</th>
+                                <th>Available version</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if npm is empty %}
+                                <tr>
+                                    <td colspan="2" class="text-center">No dependencies found!</td>
+                                </tr>
+                            {% endif %}
+                            {% for dependency in npm %}
+                                <tr>
+                                    <td>{{ dependency.package.name }}</td>
                                     <td>{{ macro.statusLabel(dependency.rawVersion, dependency.status) }}</td>
                                     <td>{{ dependency.package.latestVersion }}</td>
                                 </tr>

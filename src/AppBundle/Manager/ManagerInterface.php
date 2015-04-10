@@ -12,17 +12,17 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Project;
-use AppBundle\Formatter\FormatterInterface;
+use AppBundle\Fetcher\FetcherInterface;
 
 interface ManagerInterface
 {
     /**
      * Get dependencies for package file
      *
-     * @param Project            $project
-     * @param FormatterInterface $formatter
+     * @param Project          $project
+     * @param FetcherInterface $fetcher
      *
      * @return array
      */
-    public function getDependencies(Project $project, FormatterInterface $formatter);
+    public function getDependencies(Project $project, FetcherInterface $fetcher);
 }

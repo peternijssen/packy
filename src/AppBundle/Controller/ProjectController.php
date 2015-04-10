@@ -75,17 +75,19 @@ class ProjectController extends Controller
      *
      * Analyze project
      *
-     * @param Request $request A Request instance
      * @param Project $project
      *
      * @return Response A Response instance
      */
-    public function analyzeAction(Request $request, Project $project)
+    public function analyzeAction(Project $project)
     {
+        $dependencyRepository = $this->get('packy.repository.dependency');
+
         return $this->render(
             "AppBundle:Project:analyze.html.twig",
             array(
-                'project' => $project,
+                'composer' => $dependencyRepository->findAll($project, 'composer'),
+                'npm' => $dependencyRepository->findAll($project, 'npm'),
             )
         );
     }

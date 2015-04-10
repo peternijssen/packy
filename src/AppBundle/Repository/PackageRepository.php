@@ -68,19 +68,19 @@ class PackageRepository
     /**
      * Return one package
      *
-     * @param string $package
+     * @param string $name
      * @param string $manager
      *
      * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOne($package, $manager)
+    public function findOne($name, $manager)
     {
         return $this->getQueryBuilder()
-            ->where(self::ENTITY_ALIAS.'.package = :package')
+            ->where(self::ENTITY_ALIAS.'.name = :name')
             ->andWhere(self::ENTITY_ALIAS.'.manager = :manager')
-            ->setParameter(':package', $package)
+            ->setParameter(':name', $name)
             ->setParameter(':manager', $manager)
             ->getQuery()
             ->getOneOrNullResult();

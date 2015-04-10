@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Formatter;
+namespace AppBundle\Fetcher;
 
-interface FormatterInterface
+interface FetcherInterface
 {
     /**
      * Get the package file name
@@ -21,11 +21,11 @@ interface FormatterInterface
     public function getPackageFile();
 
     /**
-     * Format the dependencies
+     * fetch the dependencies
      *
      * @param string $fileContent
      *
      * @return array
      */
-    public function formatDependencies($fileContent);
+    public function fetchDependencies($fileContent);
 }

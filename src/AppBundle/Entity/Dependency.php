@@ -214,7 +214,7 @@ class Dependency
             return "unstable";
         }
 
-        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) < 0) {
+        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) <= 0) {
             return "stable";
         }
 

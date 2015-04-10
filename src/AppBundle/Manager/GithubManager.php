@@ -12,7 +12,7 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Project;
-use AppBundle\Formatter\FormatterInterface;
+use AppBundle\Fetcher\FetcherInterface;
 use GuzzleHttp\Client as GuzzleClient;
 
 class GithubManager implements ManagerInterface
@@ -21,23 +21,23 @@ class GithubManager implements ManagerInterface
     /**
      * Get dependencies for package file
      *
-     * @param Project            $project
-     * @param FormatterInterface $formatter
+     * @param Project          $project
+     * @param FetcherInterface $fetcher
      *
      * @return array
      */
-    public function getDependencies(Project $project, FormatterInterface $formatter)
+    public function getDependencies(Project $project, FetcherInterface $fetcher)
     {
         $urlParts = array_filter(explode("/", $project->getRepositoryUrl()));
 
         $client = new GuzzleClient();
         $response = $client->get(
-            "https://api.github.com/repos/".$urlParts[3]."/".$urlParts[4]."/contents/".$formatter->getPackageFile()
+            "https://api.github.com/repos/".$urlParts[3]."/".$urlParts[4]."/contents/".$fetcher->getPackageFile()
         );
 
         $body = $this->parseJson($response->getBody());
 
-        return $formatter->formatDependencies($body);
+        return $fetcher->fetchDependencies($body);
     }
 
     /**

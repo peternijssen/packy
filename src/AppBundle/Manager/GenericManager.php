@@ -12,7 +12,7 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Project;
-use AppBundle\Formatter\FormatterInterface;
+use AppBundle\Fetcher\FetcherInterface;
 
 class GenericManager
 {
@@ -34,15 +34,15 @@ class GenericManager
     /**
      * Get depencies
      *
-     * @param Project            $project
-     * @param FormatterInterface $formatter
+     * @param Project          $project
+     * @param FetcherInterface $fetcher
      *
      * @return array
      */
-    public function getDependencies(Project $project, FormatterInterface $formatter)
+    public function getDependencies(Project $project, FetcherInterface $fetcher)
     {
         $analyzer = $this->managerFactory->createForManager($project);
 
-        return $analyzer->getDependencies($project, $formatter);
+        return $analyzer->getDependencies($project, $fetcher);
     }
 }

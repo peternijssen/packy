@@ -7,6 +7,10 @@ services:
         class: AppBundle\Repository\PackageRepository
         arguments:
             - @doctrine.orm.entity_manager
+    packy.repository.dependency:
+        class: AppBundle\Repository\DependencyRepository
+        arguments:
+            - @doctrine.orm.entity_manager
     packy.repository.user:
         class: AppBundle\Repository\UserRepository
         arguments:

@@ -43,7 +43,7 @@ class PackageUpdateCommand extends ContainerAwareCommand
             $analyzer = $this->getContainer()->get('packy.analyzer.generic_analyzer');
             $package = $analyzer->analyzePackage($package, $package->getManager());
             $packageRepository->update($package);
-            $output->writeln("<info>Package ".$package->getPackage()." updated!</info>");
+            $output->writeln("<info>Package ".$package->getName()." updated!</info>");
         }
     }
 }
