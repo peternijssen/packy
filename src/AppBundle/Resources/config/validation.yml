@@ -12,3 +12,4 @@ AppBundle\Entity\User:
             - NotBlank: ~
         lastName:
             - NotBlank: ~
+            
