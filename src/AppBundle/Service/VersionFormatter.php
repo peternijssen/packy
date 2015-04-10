@@ -22,22 +22,23 @@ class VersionFormatter
      */
     public function normalizeVersion($rawVersion)
     {
-        list($versionCandidate) = explode('-', $rawVersion);
-        $versionCandidate = str_replace('v', '', $versionCandidate);
-        if (strpos($versionCandidate, ',') !== false) {
-            $versionsRange = explode(',', $versionCandidate);
-            $versionCandidate = '0.0.0';
+        $normalizedVersion = "0.0.0";
+        if (strpos($rawVersion, ',') !== false) {
+            $versionsRange = explode(',', $rawVersion);
             foreach ($versionsRange as $versionRange) {
                 $nowVersion = $this->determineVersionValue($versionRange);
-                if (version_compare($versionCandidate, $nowVersion) < 0) {
-                    $versionCandidate = $nowVersion;
+                if (version_compare($normalizedVersion, $nowVersion) < 0) {
+                    $normalizedVersion = $nowVersion;
                 }
             }
         } else {
-            $versionCandidate = $this->determineVersionValue($versionCandidate);
+            $normalizedVersion = $this->determineVersionValue($rawVersion);
         }
 
-        return $versionCandidate;
+        // Remove any characters which don't belong in an actual version number
+        $normalizedVersion = preg_replace("/[^0-9.]/", "", $normalizedVersion);
+
+        return $normalizedVersion;
     }
 
     /**
