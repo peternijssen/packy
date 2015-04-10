@@ -1,0 +1,9 @@
+{% macro statusLabel(version, status) %}
+    {% if status == 'stable' %}
+        <span class="label label-success">{{ version }}</span>
+    {% elseif status == 'outdated' %}
+        <span class="label label-danger">{{ version }}</span>
+    {% elseif status == 'unstable' %}
+        <span class="label label-warning" data-toggle="tooltip" title="You are using an unstable version. Consider picking a stable version.">{{ version }}</span>
+    {% endif %}
+{% endmacro %}

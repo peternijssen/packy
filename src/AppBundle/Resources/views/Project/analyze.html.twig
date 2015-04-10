@@ -1,4 +1,6 @@
 {% extends '::base.html.twig' %}
+{% import "::macro.html.twig" as macro %}
+
 
 {% block title %}
     {{ parent() }} | Projects
@@ -41,7 +43,7 @@
                             {% for dependency in project.dependencies  %}
                                 <tr>
                                     <td>{{ dependency.package.package }}</td>
-                                    <td><span class="label label-{{ dependency.isUpdate ? "success" : "danger" }}">{{ dependency.rawVersion }}</span></td>
+                                    <td>{{ macro.statusLabel(dependency.rawVersion, dependency.status) }}</td>
                                     <td>{{ dependency.package.latestVersion }}</td>
                                 </tr>
                             {% endfor %}

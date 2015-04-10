@@ -204,16 +204,20 @@ class Dependency
     }
 
     /**
-     * Check if dependency is up 2 date
+     * Get status
      *
      * @return bool
      */
-    public function isUpdate()
+    public function getStatus()
     {
-        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) < 0) {
-            return true;
+        if (preg_match('/[a-zA-Z]+$/', $this->getRawVersion())) {
+            return "unstable";
         }
 
-        return false;
+        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) < 0) {
+            return "stable";
+        }
+
+        return "outdated";
     }
 }
