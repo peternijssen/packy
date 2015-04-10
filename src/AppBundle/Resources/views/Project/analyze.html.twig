@@ -9,11 +9,11 @@
 {% block headerContent %}
     <h1>
         Projects
-        <small>Analyze</small>
+        <small>Analyze {{ project.name }}</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ path('packy_project_overview') }}"><i class="fa fa-tasks"></i> Projects</a></li>
-        <li> Analyze</li>
+        <li> Analyze {{ project.name }}</li>
     </ol>
 {% endblock %}
 

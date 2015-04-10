@@ -7,11 +7,23 @@
 {% block headerContent %}
     <h1>
         Projects
-        <small>Add / Edit</small>
+        <small>
+            {% if project.id is null %}
+                Add project
+            {% else %}
+                Edit {{ project.name }}
+            {% endif %}
+        </small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ path('packy_project_overview') }}"><i class="fa fa-tasks"></i> Projects</a></li>
-        <li> Add / Edit</li>
+        <li>
+            {% if project.id is null %}
+                Add project
+            {% else %}
+                Edit {{ project.name }}
+            {% endif %}
+        </li>
     </ol>
 {% endblock %}
 

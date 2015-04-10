@@ -35,7 +35,7 @@ class UserController extends Controller
         return $this->render(
             'AppBundle:User:overview.html.twig',
             array(
-                'users' => $users
+                'users' => $users,
             )
         );
     }
@@ -67,7 +67,8 @@ class UserController extends Controller
         return $this->render(
             "AppBundle:User:form.html.twig",
             array(
-                'userForm' => $userForm->createView()
+                'user' => $user,
+                'userForm' => $userForm->createView(),
             )
         );
     }
@@ -99,7 +100,8 @@ class UserController extends Controller
         return $this->render(
             "AppBundle:User:form.html.twig",
             array(
-                'userForm' => $userForm->createView()
+                'user' => $user,
+                'userForm' => $userForm->createView(),
             )
         );
     }

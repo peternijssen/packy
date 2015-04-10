@@ -65,6 +65,7 @@ class ProjectController extends Controller
         return $this->render(
             "AppBundle:Project:form.html.twig",
             array(
+                'project' => $project,
                 'projectForm' => $projectForm->createView(),
             )
         );
@@ -86,6 +87,7 @@ class ProjectController extends Controller
         return $this->render(
             "AppBundle:Project:analyze.html.twig",
             array(
+                'project' => $project,
                 'composer' => $dependencyRepository->findAll($project, 'composer'),
                 'npm' => $dependencyRepository->findAll($project, 'npm'),
             )
@@ -119,6 +121,7 @@ class ProjectController extends Controller
         return $this->render(
             "AppBundle:Project:form.html.twig",
             array(
+                'project' => $project,
                 'projectForm' => $projectForm->createView(),
             )
         );

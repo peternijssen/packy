@@ -7,11 +7,23 @@
 {% block headerContent %}
     <h1>
         Users
-        <small>Add / Edit</small>
+        <small>
+            {% if user.id is null %}
+                Add user
+            {% else %}
+                Edit {{ user.name }}
+            {% endif %}
+        </small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ path('packy_user_overview') }}"><i class="fa fa-users"></i> Users</a></li>
-        <li> Add / Edit</li>
+        <li>
+            {% if user.id is null %}
+                Add user
+            {% else %}
+                Edit {{ user.name }}
+            {% endif %}
+        </li>
     </ol>
 {% endblock %}
 
