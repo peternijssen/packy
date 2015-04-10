@@ -33,7 +33,7 @@ class ComposerAnalyzer implements AnalyzerInterface
         $response = $client->get($this->packageVendor.$package->getPackage().".json");
         $data = $this->parseJson($response->getBody());
 
-        $newestVersion = $this->getNewestVersion(array_keys($data['package']['versions']));
+        $newestVersion = $this->getLatestVersion(array_keys($data['package']['versions']));
         $package->setLatestVersion($newestVersion);
         $package->setLastChecktAt(new \DateTime());
 
@@ -64,7 +64,7 @@ class ComposerAnalyzer implements AnalyzerInterface
      *
      * @return string
      */
-    private function getNewestVersion($versions = array())
+    private function getLatestVersion($versions = array())
     {
         $latestVersion = '0.0.0';
         foreach ($versions as $version) {
