@@ -19,7 +19,7 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-8 col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#composer" data-toggle="tab">Composer</a></li>
@@ -79,5 +79,79 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-4 col-md-12">
+            <div class="box box-solid box-danger">
+                <div class="box-header">
+                    <div class="pull-right box-tools">
+
+                    </div>
+                    <h3 class="box-title">
+                        Status overview
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="column-chart">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function () {
+            $('.column-chart').highcharts({
+                chart: {
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'column'
+                },
+                xAxis: {
+                    categories: ['Composer', 'NPM']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: null
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: null
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                    shared: true
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'percent'
+                    }
+                },
+                colors: [
+                    '#dd4b39',
+                    '#f0ad4e',
+                    '#00a65a'
+                ],
+                series: [{
+                    name: 'Outdated',
+                    data: [5, 3]
+                }, {
+                    name: 'Unstable',
+                    data: [2, 2]
+                }, {
+                    name: 'Stable',
+                    data: [3, 4]
+                }]
+            });
+        });
+    </script>
 {% endblock %}

@@ -56,6 +56,8 @@ paths.js = [
     'vendor/components/bootstrap/dist/js/bootstrap.js',
     'vendor/components/admin-lte/plugins/slimScroll/jquery.slimscroll.js',
     'vendor/components/admin-lte/dist/js/app.js',
+    'vendor/components/highcharts/highcharts.js',
+    'vendor/components/highcharts/modules/exporting.js',
     'app/Resources/public/js/**/*.js'
 ];
 gulp.task('js', ['bower'], function() {
