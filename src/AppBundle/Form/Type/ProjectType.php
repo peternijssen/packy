@@ -38,7 +38,7 @@ class ProjectType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-            'data_class' => 'AppBundle\Entity\Project'
+            'data_class' => 'AppBundle\Entity\Project',
             )
         );
     }

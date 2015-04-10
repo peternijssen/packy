@@ -1,0 +1,14 @@
+AppBundle\Entity\Project:
+    properties:
+        name:
+            - NotBlank: ~
+        repositoryUrl:
+            - NotBlank: ~
+            - Url: ~
+
+AppBundle\Entity\User:
+    properties:
+        firstName:
+            - NotBlank: ~
+        lastName:
+            - NotBlank: ~

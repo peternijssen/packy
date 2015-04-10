@@ -15,9 +15,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
-/**
- * @TODO: Validate
- */
 class UserType extends BaseType
 {
     /**
@@ -39,7 +36,7 @@ class UserType extends BaseType
     {
         $resolver->setDefaults(
             array(
-            'data_class' => 'AppBundle\Entity\User'
+            'data_class' => 'AppBundle\Entity\User',
             )
         );
     }
