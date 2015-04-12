@@ -26,6 +26,8 @@ class ManagerFactory
     {
         if (strpos($project->getRepositoryUrl(), 'github') !== false) {
             return new GithubManager();
+        } elseif (strpos($project->getRepositoryUrl(), 'gitlab') !== false) {
+            return new GitlabManager();
         }
 
         throw new \InvalidArgumentException('Unknown repository manager for : '.$project->getRepositoryUrl());

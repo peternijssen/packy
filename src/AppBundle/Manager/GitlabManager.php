@@ -15,7 +15,11 @@ use AppBundle\Entity\Project;
 use AppBundle\Fetcher\FetcherInterface;
 use GuzzleHttp\Client as GuzzleClient;
 
-class GithubManager implements ManagerInterface
+/**
+ * TODO: Gitlab URL should be configurable
+ * TODO: Gitlab requires a ?private_token and should be configurable
+ */
+class GitlabManager implements ManagerInterface
 {
     /**
      * Get dependencies for package file
@@ -31,7 +35,7 @@ class GithubManager implements ManagerInterface
 
         $client = new GuzzleClient();
         $response = $client->get(
-            "https://api.github.com/repos/".$urlParts[3]."/".$urlParts[4]."/contents/".$fetcher->getPackageFile(),
+            "https://gitlab.com/api/v3/projects/".$urlParts[3]."%2F".$urlParts[4]."/repository/files/?private_token=TODO&file_path=".$fetcher->getPackageFile()."&ref=master",
             array(
                 'exceptions' => false,
             )
