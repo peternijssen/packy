@@ -13,10 +13,26 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Project;
 use AppBundle\Fetcher\FetcherInterface;
+use AppBundle\Service\SettingsService;
 use GuzzleHttp\Client as GuzzleClient;
 
 class GithubManager implements ManagerInterface
 {
+    /**
+     * @var SettingsService
+     */
+    private $settingsService;
+
+    /**
+     * Constructor
+     *
+     * @param SettingsService $settingsService
+     */
+    public function __construct(SettingsService $settingsService)
+    {
+        $this->settingsService = $settingsService;
+    }
+
     /**
      * Get dependencies for package file
      *

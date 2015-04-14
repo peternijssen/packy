@@ -1,6 +1,10 @@
 services:
     packy.service.version_formatter:
         class: AppBundle\Service\VersionFormatter
+    packy.service.settings_service:
+        class: AppBundle\Service\SettingsService
+        arguments:
+            - @packy.repository.setting
     packy.menu.voter.route_voter:
         class: AppBundle\Menu\Voter\RouteVoter
         calls:

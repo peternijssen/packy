@@ -12,9 +12,25 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Project;
+use AppBundle\Service\SettingsService;
 
 class ManagerFactory
 {
+    /**
+     * @var SettingsService
+     */
+    private $settingsService;
+
+    /**
+     * Constructor
+     *
+     * @param SettingsService $settingsService
+     */
+    public function __construct(SettingsService $settingsService)
+    {
+        $this->settingsService = $settingsService;
+    }
+
     /**
      * Create for manager
      *
@@ -25,9 +41,9 @@ class ManagerFactory
     public function createForManager(Project $project)
     {
         if (strpos($project->getRepositoryUrl(), 'github') !== false) {
-            return new GithubManager();
+            return new GithubManager($this->settingsService);
         } elseif (strpos($project->getRepositoryUrl(), 'gitlab') !== false) {
-            return new GitlabManager();
+            return new GitlabManager($this->settingsService);
         }
 
         throw new \InvalidArgumentException('Unknown repository manager for : '.$project->getRepositoryUrl());

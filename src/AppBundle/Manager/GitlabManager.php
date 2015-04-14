@@ -13,14 +13,26 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Project;
 use AppBundle\Fetcher\FetcherInterface;
+use AppBundle\Service\SettingsService;
 use GuzzleHttp\Client as GuzzleClient;
 
-/**
- * TODO: Gitlab URL should be configurable
- * TODO: Gitlab requires a ?private_token and should be configurable
- */
 class GitlabManager implements ManagerInterface
 {
+    /**
+     * @var SettingsService
+     */
+    private $settingsService;
+
+    /**
+     * Constructor
+     *
+     * @param SettingsService $settingsService
+     */
+    public function __construct(SettingsService $settingsService)
+    {
+        $this->settingsService = $settingsService;
+    }
+
     /**
      * Get dependencies for package file
      *
@@ -33,9 +45,11 @@ class GitlabManager implements ManagerInterface
     {
         $urlParts = array_filter(explode("/", $project->getRepositoryUrl()));
 
+        dump($this->settingsService->getValue('gitlab_url', 'https://gitlab.com')."/api/v3/projects/".$urlParts[3]."%2F".$urlParts[4]."/repository/files/?private_token=".$this->settingsService->getValue('gitlab_token', 'none')."&file_path=".$fetcher->getPackageFile()."&ref=master");
+
         $client = new GuzzleClient();
         $response = $client->get(
-            "https://gitlab.com/api/v3/projects/".$urlParts[3]."%2F".$urlParts[4]."/repository/files/?private_token=TODO&file_path=".$fetcher->getPackageFile()."&ref=master",
+            $this->settingsService->getValue('gitlab_url', 'https://gitlab.com')."/api/v3/projects/".$urlParts[3]."%2F".$urlParts[4]."/repository/files/?private_token=".$this->settingsService->getValue('gitlab_token', 'none')."&file_path=".$fetcher->getPackageFile()."&ref=master",
             array(
                 'exceptions' => false,
             )

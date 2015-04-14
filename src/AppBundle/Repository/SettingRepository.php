@@ -48,6 +48,22 @@ class SettingRepository
     }
 
     /**
+     * Find setting by name
+     *
+     * @param string $name settings name
+     *
+     * @return Setting
+     */
+    public function findByName($name)
+    {
+        return $this->getQueryBuilder()
+            ->andWhere(self::ENTITY_ALIAS.'.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
      * Get settings by names
      *
      * @param array $names
