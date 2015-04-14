@@ -29,7 +29,7 @@ Packy is not production ready yet. However, if you want to install it already or
 - install gulp dependencies `npm install `
 - run `gulp watch` to get assets
 - Run `composer install` to install php dependencies
-- Make sure a database is present and the connection has been set in `app/config/parameters.yml`
+- Make sure a database connection has been set in `app/config/parameters.yml`
 - Run `php app/console packy:install`
 
 Contributing
