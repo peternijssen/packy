@@ -7,7 +7,7 @@ services:
             - @packy.repository.setting
     packy.menu.voter.route_voter:
         class: AppBundle\Menu\Voter\RouteVoter
-        calls:
-            - [setRequest, ["@?request="]]
+        arguments:
+            - @request_stack
         tags:
             - { name: knp_menu.voter }

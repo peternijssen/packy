@@ -14,20 +14,23 @@ namespace AppBundle\Menu\Voter;
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class RouteVoter implements VoterInterface
 {
     /**
-     * @var Request $request
+     * @var RequestStack
      */
-    private $request;
+    private $requestStack;
 
     /**
-     * @param Request $request
+     * Constructor
+     *
+     * @param RequestStack $requestStack
      */
-    public function setRequest(Request $request = null)
+    public function __construct(RequestStack $requestStack)
     {
-        $this->request = $request;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -39,11 +42,11 @@ class RouteVoter implements VoterInterface
      */
     public function matchItem(ItemInterface $item)
     {
-        if (null === $this->request) {
+        if (null === $this->requestStack->getCurrentRequest()) {
             return null;
         }
 
-        $route = $this->request->attributes->get('_route');
+        $route = $this->requestStack->getCurrentRequest()->attributes->get('_route');
         if (null === $route) {
             return null;
         }
@@ -77,7 +80,7 @@ class RouteVoter implements VoterInterface
      */
     private function isMatchingRoute(array $itemRoute)
     {
-        $route = $this->request->attributes->get('_route');
+        $route = $this->requestStack->getCurrentRequest()->attributes->get('_route');
         $route = $this->getBaseRoute($route);
 
         if (!empty($itemRoute['route'])) {
@@ -98,6 +101,7 @@ class RouteVoter implements VoterInterface
     private function getBaseRoute($route)
     {
         $chunks = explode("_", $route);
+
         return implode("_", array_slice($chunks, 0, 2));
     }
 }
