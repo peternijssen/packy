@@ -81,7 +81,7 @@ class Builder extends ContainerAware
             array(
                 'route' => 'packy_settings_gitlab_overview',
                 'extras' => array(
-                    'icon' => 'fa-git fa-fw',
+                    'icon' => 'fa-git-square fa-fw',
                 ),
             )
         );
