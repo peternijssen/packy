@@ -12,7 +12,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
-use AppBundle\Form\Type\UserType;
+use AppBundle\Form\Type\UserFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +50,7 @@ class UserController extends Controller
     public function addAction(Request $request)
     {
         $user = new User();
-        $userForm = $this->createForm(new UserType($user), $user);
+        $userForm = $this->createForm(new UserFormType($user), $user);
 
         if ($request->isMethod('POST')) {
             $userForm->handleRequest($request);
@@ -85,7 +85,7 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $userForm = $this->createForm(new UserType($user), $user);
+        $userForm = $this->createForm(new UserFormType($user), $user);
 
         if ($request->isMethod('POST')) {
             $userForm->handleRequest($request);

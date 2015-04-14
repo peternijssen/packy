@@ -15,6 +15,8 @@
         "doctrine/orm": "2.4.*",
         "doctrine/dbal": "2.4.*",
         "doctrine/doctrine-bundle": "1.*",
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
         "stof/doctrine-extensions-bundle": "1.*",
         "twig/extensions": "1.*",
         "symfony/swiftmailer-bundle": "2.*",

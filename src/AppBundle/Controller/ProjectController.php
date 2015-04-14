@@ -12,7 +12,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
-use AppBundle\Form\Type\ProjectType;
+use AppBundle\Form\Type\ProjectFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +50,7 @@ class ProjectController extends Controller
     public function addAction(Request $request)
     {
         $project = new Project();
-        $projectForm = $this->createForm(new ProjectType(), $project);
+        $projectForm = $this->createForm(new ProjectFormType(), $project);
 
         if ($request->isMethod('POST')) {
             $projectForm->handleRequest($request);
@@ -106,7 +106,7 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project)
     {
-        $projectForm = $this->createForm(new ProjectType(), $project);
+        $projectForm = $this->createForm(new ProjectFormType(), $project);
 
         if ($request->isMethod('POST')) {
             $projectForm->handleRequest($request);

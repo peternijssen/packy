@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
-class UserType extends BaseType
+class UserFormType extends BaseType
 {
     /**
      * {@inheritdoc}

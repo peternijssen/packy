@@ -1,3 +1,9 @@
 services:
     packy.service.version_formatter:
         class: AppBundle\Service\VersionFormatter
+    packy.menu.voter.route_voter:
+        class: AppBundle\Menu\Voter\RouteVoter
+        calls:
+            - [setRequest, ["@?request="]]
+        tags:
+            - { name: knp_menu.voter }

@@ -14,6 +14,8 @@ namespace AppBundle\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class InstallCommand extends Command
@@ -38,20 +40,31 @@ class InstallCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $command = $this->getApplication()->find('doctrine:schema:update');
+        $command = $this->getApplication()->find('doctrine:database:create');
         $arguments = array(
-            'command' => 'doctrine:schema:update',
-            '--force' => true,
+            'command' => 'doctrine:database:create',
+            '--if-not-exists' => true,
+            '--quiet' => true,
         );
         $input = new ArrayInput($arguments);
+        $input->setInteractive(false);
         $command->run($input, $output);
 
-        $command = $this->getApplication()->find('fos:user:create');
+        $command = $this->getApplication()->find('doctrine:migrations:migrate');
+        $arguments = array(
+            'command' => 'doctrine:migrations:migrate',
+            '--quiet' => true,
+        );
+        $input = new ArrayInput($arguments);
+        $input->setInteractive(false);
+        $command->run($input, $output);
+
+        $userCommand = $this->getApplication()->find('fos:user:create');
         $arguments = array(
             'command' => 'fos:user:create',
             '--super-admin' => true,
         );
         $input = new ArrayInput($arguments);
-        $command->run($input, $output);
+        $userCommand->run($input, $output);
     }
 }

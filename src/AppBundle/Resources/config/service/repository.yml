@@ -15,3 +15,7 @@ services:
         class: AppBundle\Repository\UserRepository
         arguments:
             - @doctrine.orm.entity_manager
+    packy.repository.setting:
+        class: AppBundle\Repository\SettingRepository
+        arguments:
+            - @doctrine.orm.entity_manager

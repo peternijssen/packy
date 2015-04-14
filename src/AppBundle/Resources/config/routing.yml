@@ -4,3 +4,6 @@ packy_projects:
 packy_users:
     resource: "@AppBundle/Resources/config/routing/user.yml"
     prefix:   /users
+packy_settings:
+    resource: "@AppBundle/Resources/config/routing/settings.yml"
+    prefix:   /settings

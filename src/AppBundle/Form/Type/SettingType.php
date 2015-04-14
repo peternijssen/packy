@@ -11,21 +11,37 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Setting;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProjectType extends AbstractType
+class SettingType extends AbstractType
 {
+
+    /**
+     * @var Setting
+     */
+    private $setting;
+
+    /**
+     * @param Setting $setting
+     */
+    public function __construct(Setting $setting)
+    {
+        $this->setting = $setting;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name')
-            ->add('repositoryUrl')
-            ->add('description');
+        $builder->add('name', 'hidden');
+        $builder->add('type', 'hidden');
+        $builder->add('value', 'text', array('label' => false));
+
+        $builder->setData($this->setting);
     }
 
     /**
@@ -33,11 +49,9 @@ class ProjectType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(
-            array(
-            'data_class' => 'AppBundle\Entity\Project',
-            )
-        );
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\Setting',
+        ));
     }
 
     /**
@@ -45,5 +59,6 @@ class ProjectType extends AbstractType
      */
     public function getName()
     {
+        return '';
     }
 }

@@ -54,6 +54,10 @@ doctrine:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
 
+# Doctrine migrations
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/migrations
+
 # Doctrine extensions
 stof_doctrine_extensions:
     orm:
