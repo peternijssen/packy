@@ -111,8 +111,8 @@ class ProjectController extends Controller
         if ($request->isMethod('POST')) {
             $projectForm->handleRequest($request);
             if ($projectForm->isValid()) {
-                $projectManager = $this->get('packy.repository.project');
-                $projectManager->update($project);
+                $projectRepository = $this->get('packy.repository.project');
+                $projectRepository->update($project);
 
                 return $this->redirect($this->generateUrl('packy_project_overview'));
             }
@@ -138,8 +138,8 @@ class ProjectController extends Controller
      */
     public function deleteAction(Project $project)
     {
-        $projectManager = $this->get('packy.repository.project');
-        $projectManager->delete($project);
+        $projectRepository = $this->get('packy.repository.project');
+        $projectRepository->delete($project);
 
         return $this->redirect($this->generateUrl('packy_project_overview'));
     }
