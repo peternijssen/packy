@@ -45,13 +45,12 @@ class GitlabManager implements ManagerInterface
     {
         $urlParts = array_filter(explode("/", $project->getRepositoryUrl()));
 
-        dump($this->settingsService->getValue('gitlab_url', 'https://gitlab.com')."/api/v3/projects/".$urlParts[3]."%2F".$urlParts[4]."/repository/files/?private_token=".$this->settingsService->getValue('gitlab_token', 'none')."&file_path=".$fetcher->getPackageFile()."&ref=master");
-
         $client = new GuzzleClient();
         $response = $client->get(
             $this->settingsService->getValue('gitlab_url', 'https://gitlab.com')."/api/v3/projects/".$urlParts[3]."%2F".$urlParts[4]."/repository/files/?private_token=".$this->settingsService->getValue('gitlab_token', 'none')."&file_path=".$fetcher->getPackageFile()."&ref=master",
             array(
                 'exceptions' => false,
+                'verify' => false,
             )
         );
 

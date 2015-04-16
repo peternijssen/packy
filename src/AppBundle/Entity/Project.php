@@ -148,6 +148,50 @@ class Project
     }
 
     /**
+     * Add dependencies
+     *
+     * @param Dependency $dependency
+     *
+     * @return Project
+     */
+    public function addDependency(Dependency $dependency)
+    {
+        $dependency->setProject($this);
+
+        foreach ($this->dependencies as $k => $dep) {
+            if ($dep->getPackage()->getName() == $dependency->getPackage()->getName()) {
+                $this->dependencies[$k] = $dep;
+
+                return $this;
+            }
+        }
+
+        $this->dependencies[] = $dependency;
+
+        return $this;
+    }
+
+    /**
+     * Remove dependencies
+     *
+     * @param Dependency $dependency
+     */
+    public function removeDependency(Dependency $dependency)
+    {
+        $this->dependencies->removeElement($dependency);
+    }
+
+    /**
+     * Get dependencies
+     *
+     * @return Collection
+     */
+    public function getDependencies()
+    {
+        return $this->dependencies;
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -217,40 +261,5 @@ class Project
     public function getDeletedAt()
     {
         return $this->deletedAt;
-    }
-
-    /**
-     * Add dependencies
-     *
-     * @param Dependency $dependency
-     *
-     * @return Project
-     */
-    public function addDependency(Dependency $dependency)
-    {
-        $dependency->setProject($this);
-        $this->dependencies[] = $dependency;
-
-        return $this;
-    }
-
-    /**
-     * Remove dependencies
-     *
-     * @param Dependency $dependency
-     */
-    public function removeDependency(Dependency $dependency)
-    {
-        $this->dependencies->removeElement($dependency);
-    }
-
-    /**
-     * Get dependencies
-     *
-     * @return Collection
-     */
-    public function getDependencies()
-    {
-        return $this->dependencies;
     }
 }
