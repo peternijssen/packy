@@ -30,14 +30,23 @@ class ComposerAnalyzer implements AnalyzerInterface
     public function analyzePackage(Package $package)
     {
         $client = new GuzzleClient();
-        $response = $client->get($this->packageVendor.$package->getName().".json");
-        $data = $this->parseJson($response->getBody());
+        $response = $client->get(
+            $this->packageVendor.$package->getName().".json",
+            array(
+                'exceptions' => false,
+            )
+        );
 
-        $newestVersion = $this->getLatestVersion(array_keys($data['package']['versions']));
-        $package->setLatestVersion($newestVersion);
-        $package->setLastChecktAt(new \DateTime());
+        if ($response->getStatusCode() == 200) {
+            $data = $this->parseJson($response->getBody());
+
+            $newestVersion = $this->getLatestVersion(array_keys($data['package']['versions']));
+            $package->setLatestVersion($newestVersion);
+            $package->setLastChecktAt(new \DateTime());
+        }
 
         return $package;
+
     }
 
     /**
