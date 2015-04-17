@@ -2,9 +2,15 @@ AppBundle\Entity\Project:
     properties:
         name:
             - NotBlank: ~
+        repositoryType:
+            - NotBlank: ~
         repositoryUrl:
             - NotBlank: ~
             - Url: ~
+        vendorName:
+            - NotBlank: ~
+        packageName:
+            - NotBlank: ~
 
 AppBundle\Entity\User:
     properties:

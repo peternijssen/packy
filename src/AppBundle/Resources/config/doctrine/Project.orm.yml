@@ -25,10 +25,22 @@ AppBundle\Entity\Project:
         description:
             type: text
             nullable: true
+        repositoryType:
+            type: string
+            length: 25
+            column: repository_type
         repositoryUrl:
             type: string
             length: 255
             column: repository_url
+        vendorName:
+            type: string
+            length: 50
+            column: vendor_name
+        packageName:
+            type: string
+            length: 50
+            column: package_name
         createdAt:
             type: datetime
             column: created_at

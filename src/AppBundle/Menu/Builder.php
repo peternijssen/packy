@@ -76,16 +76,6 @@ class Builder extends ContainerAware
      */
     protected function settingsMenu(ItemInterface $menu)
     {
-        $menu->addChild(
-            'Gitlab',
-            array(
-                'route' => 'packy_settings_gitlab_overview',
-                'extras' => array(
-                    'icon' => 'fa-git-square fa-fw',
-                ),
-            )
-        );
-
         return $menu;
     }
 }

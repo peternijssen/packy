@@ -11,7 +11,7 @@
 
 namespace AppBundle\Manager;
 
-use AppBundle\Service\SettingsService;
+use AppBundle\Entity\Project;
 
 class GitlabAdapter implements AdapterInterface
 {
@@ -21,14 +21,20 @@ class GitlabAdapter implements AdapterInterface
     private $client;
 
     /**
+     * @var Project
+     */
+    private $project;
+
+    /**
      * Constructor
      *
-     * @param SettingsService $settingsService
+     * @param Project $project
      */
-    public function __construct(SettingsService $settingsService)
+    public function __construct(Project $project)
     {
-        $this->client = new \Gitlab\Client($settingsService->getValue('gitlab_url').'/api/v3/');
-        $this->client->authenticate($settingsService->getValue('gitlab_token'), \Gitlab\Client::AUTH_URL_TOKEN);
+        $this->project = $project;
+        $this->client = new \Gitlab\Client('/api/v3/');
+        $this->client->authenticate("", \Gitlab\Client::AUTH_URL_TOKEN);
     }
 
     /**
@@ -42,7 +48,11 @@ class GitlabAdapter implements AdapterInterface
     public function getFileContents($file, $branch = 'master')
     {
         try {
-            $fileContent = $this->client->api('repositories')->getFile("PROJECT_ID", $file, $branch);
+            $fileContent = $this->client->api('repositories')->getFile(
+                $this->project->getVendorName()."/".$this->project->getPackageName(),
+                $file,
+                $branch
+            );
 
             return $fileContent;
         } catch (\Gitlab\Exception\RuntimeException $e) {

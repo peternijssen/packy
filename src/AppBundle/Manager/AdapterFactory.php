@@ -12,25 +12,9 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Project;
-use AppBundle\Service\SettingsService;
 
 class AdapterFactory
 {
-    /**
-     * @var SettingsService
-     */
-    private $settingsService;
-
-    /**
-     * Constructor
-     *
-     * @param SettingsService $settingsService
-     */
-    public function __construct(SettingsService $settingsService)
-    {
-        $this->settingsService = $settingsService;
-    }
-
     /**
      * Create for manager
      *
@@ -40,14 +24,12 @@ class AdapterFactory
      */
     public function createAdapter(Project $project)
     {
-        if (strpos($project->getRepositoryUrl(), 'github') !== false) {
-            return new GithubAdapter();
-        } elseif (strpos($project->getRepositoryUrl(), 'gitlab') !== false) {
-            return new GitlabAdapter($this->settingsService);
-        } elseif (strpos($project->getRepositoryUrl(), 'bitbucket') !== false) {
-            return new BitbucketAdapter();
+        $className = ucfirst($project->getRepositoryType())."Adapter";
+
+        if (class_exists($className)) {
+            return new $className($project);
         }
 
-        throw new \InvalidArgumentException('Unknown adapter for: '.$project->getRepositoryUrl());
+        throw new \InvalidArgumentException('Unknown adapter: '.$project->getRepositoryType());
     }
 }

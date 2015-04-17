@@ -38,6 +38,21 @@ class Project
     private $repositoryUrl;
 
     /**
+     * @var string
+     */
+    private $repositoryType;
+
+    /**
+     * @var string
+     */
+    private $vendorName;
+
+    /**
+     * @var string
+     */
+    private $packageName;
+
+    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -189,6 +204,78 @@ class Project
     public function getDependencies()
     {
         return $this->dependencies;
+    }
+
+    /**
+     * Set repositoryType
+     *
+     * @param string $repositoryType
+     *
+     * @return Project
+     */
+    public function setRepositoryType($repositoryType)
+    {
+        $this->repositoryType = $repositoryType;
+
+        return $this;
+    }
+
+    /**
+     * Get repositoryType
+     *
+     * @return string
+     */
+    public function getRepositoryType()
+    {
+        return $this->repositoryType;
+    }
+
+    /**
+     * Set vendorName
+     *
+     * @param string $vendorName
+     *
+     * @return Project
+     */
+    public function setVendorName($vendorName)
+    {
+        $this->vendorName = $vendorName;
+
+        return $this;
+    }
+
+    /**
+     * Get vendorName
+     *
+     * @return string
+     */
+    public function getVendorName()
+    {
+        return $this->vendorName;
+    }
+
+    /**
+     * Set packageName
+     *
+     * @param string $packageName
+     *
+     * @return Project
+     */
+    public function setPackageName($packageName)
+    {
+        $this->packageName = $packageName;
+
+        return $this;
+    }
+
+    /**
+     * Get packageName
+     *
+     * @return string
+     */
+    public function getPackageName()
+    {
+        return $this->packageName;
     }
 
     /**

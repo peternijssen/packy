@@ -11,6 +11,7 @@
 
 namespace AppBundle\Manager;
 
+use AppBundle\Entity\Project;
 
 class GithubAdapter implements AdapterInterface
 {
@@ -20,10 +21,18 @@ class GithubAdapter implements AdapterInterface
     private $client;
 
     /**
-     * Constructor
+     * @var Project
      */
-    public function __construct()
+    private $project;
+
+    /**
+     * Constructor
+     *
+     * @param Project $project
+     */
+    public function __construct(Project $project)
     {
+        $this->project = $project;
         $this->client = new \Github\Client();
     }
 
@@ -38,7 +47,12 @@ class GithubAdapter implements AdapterInterface
     public function getFileContents($file, $branch = 'master')
     {
         try {
-            $fileContent = $this->client->api('repo')->contents()->download("PROJECT_ID", "PROJECT_ID", $file, $branch);
+            $fileContent = $this->client->api('repo')->contents()->download(
+                $this->project->getVendorName(),
+                $this->project->getPackageName(),
+                $file,
+                $branch
+            );
 
             return $fileContent;
         } catch (\Github\Exception\RuntimeException $e) {

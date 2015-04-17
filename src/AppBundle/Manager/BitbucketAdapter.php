@@ -11,6 +11,7 @@
 
 namespace AppBundle\Manager;
 
+use AppBundle\Entity\Project;
 
 class BitbucketAdapter implements AdapterInterface
 {
@@ -20,10 +21,18 @@ class BitbucketAdapter implements AdapterInterface
     private $client;
 
     /**
-     * Constructor
+     * @var Project
      */
-    public function __construct()
+    private $project;
+
+    /**
+     * Constructor
+     *
+     * @param Project $project
+     */
+    public function __construct(Project $project)
     {
+        $this->project = $project;
         $this->client = new \Bitbucket\API\Repositories\Src();
         //$this->client ->setCredentials( new Bitbucket\API\Authentication\Basic($bb_user, $bb_pass) );
     }
@@ -38,7 +47,12 @@ class BitbucketAdapter implements AdapterInterface
      */
     public function getFileContents($file, $branch = 'master')
     {
-        $response = $this->client->raw("PROJECT_ID", "PROJECT_ID", $branch, $file);
+        $response = $this->client->raw(
+            $this->project->getVendorName(),
+            $this->project->getPackageName(),
+            $branch,
+            $file
+        );
 
         return $response->getContent();
     }

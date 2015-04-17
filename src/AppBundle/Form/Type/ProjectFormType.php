@@ -24,8 +24,13 @@ class ProjectFormType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('description')
+            ->add('repositoryType', 'choice', array(
+                'choices' => array('github' => 'Github', 'gitlab' => 'Gitlab', 'bitbucket' => 'Bitbucket'),
+            ))
             ->add('repositoryUrl')
-            ->add('description');
+            ->add('vendorName')
+            ->add('packageName');
     }
 
     /**
