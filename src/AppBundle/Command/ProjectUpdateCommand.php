@@ -13,8 +13,6 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\Dependency;
 use AppBundle\Entity\Package;
-use AppBundle\Fetcher\ComposerFetcher;
-use AppBundle\Fetcher\NpmFetcher;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -15,7 +15,7 @@ namespace AppBundle\Manager;
 class BitbucketAdapter implements AdapterInterface
 {
     /**
-     * @var \Github\Client
+     * @var \Bitbucket\API\Repositories\Src
      */
     private $client;
 
