@@ -14,7 +14,7 @@ namespace AppBundle\Manager;
 use AppBundle\Entity\Project;
 use AppBundle\Service\SettingsService;
 
-class ManagerFactory
+class AdapterFactory
 {
     /**
      * @var SettingsService
@@ -36,16 +36,18 @@ class ManagerFactory
      *
      * @param Project $project
      *
-     * @return ManagerInterface
+     * @return AdapterInterface
      */
-    public function createForManager(Project $project)
+    public function createAdapter(Project $project)
     {
         if (strpos($project->getRepositoryUrl(), 'github') !== false) {
-            return new GithubManager($this->settingsService);
+            return new GithubAdapter();
         } elseif (strpos($project->getRepositoryUrl(), 'gitlab') !== false) {
-            return new GitlabManager($this->settingsService);
+            return new GitlabAdapter($this->settingsService);
+        } elseif (strpos($project->getRepositoryUrl(), 'bitbucket') !== false) {
+            return new BitbucketAdapter();
         }
 
-        throw new \InvalidArgumentException('Unknown repository manager for : '.$project->getRepositoryUrl());
+        throw new \InvalidArgumentException('Unknown adapter for: '.$project->getRepositoryUrl());
     }
 }

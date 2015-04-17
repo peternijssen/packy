@@ -11,36 +11,54 @@
 
 namespace AppBundle\Fetcher;
 
+use AppBundle\Entity\Project;
+use AppBundle\Manager\AdapterFactory;
+
 class NpmFetcher extends AbstractFetcher
 {
+    /**
+     * @var AdapterFactory
+     */
+    private $adapterFactory;
+
     /**
      * @var string
      */
     private $packageFileName = 'package.json';
 
     /**
-     * Get the package file name
+     * Constructor
      *
-     * @return string
+     * @param AdapterFactory $adapterFactory
      */
-    public function getPackageFile()
+    public function __construct(AdapterFactory $adapterFactory)
     {
-        return $this->packageFileName;
+        $this->adapterFactory = $adapterFactory;
     }
 
     /**
      * Fetch the dependencies
      *
-     * @param string $fileContent
+     * @param Project $project
      *
      * @return array
      */
-    public function fetchDependencies($fileContent)
+    public function fetchDependencies(Project $project)
     {
-        if (array_key_exists('content', $fileContent)) {
-            $decoded = $this->parseJson(base64_decode($fileContent['content']));
+        $adapter = $this->adapterFactory->createAdapter($project);
+        $fileContent = $adapter->getFileContents($this->packageFileName);
 
-            $dependencies = array_merge($decoded['dependencies'], $decoded['devDependencies']);
+        $parsed = $this->parseJson($fileContent);
+
+        if (is_array($parsed)) {
+            $dependencies = array();
+            if (array_key_exists('dependencies', $parsed)) {
+                $dependencies = array_merge($dependencies, $parsed['dependencies']);
+            }
+
+            if (array_key_exists('devDependencies', $parsed)) {
+                $dependencies = array_merge($dependencies, $parsed['devDependencies']);
+            }
 
             return $dependencies;
         }

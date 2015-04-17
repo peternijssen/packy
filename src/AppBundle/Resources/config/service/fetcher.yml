@@ -1,0 +1,9 @@
+services:
+    packy.fetcher.composer_fetcher:
+        class: AppBundle\Fetcher\ComposerFetcher
+        arguments:
+            - @packy.manager.adapter_factory
+    packy.fetcher.npm_fetcher:
+        class: AppBundle\Fetcher\NpmFetcher
+        arguments:
+            - @packy.manager.adapter_factory

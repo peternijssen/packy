@@ -1,9 +1,5 @@
 services:
-    packy.manager.manager_factory:
-        class: AppBundle\Manager\ManagerFactory
+    packy.manager.adapter_factory:
+        class: AppBundle\Manager\AdapterFactory
         arguments:
             - @packy.service.settings_service
-    packy.manager.generic_manager:
-        class: AppBundle\Manager\GenericManager
-        arguments:
-            - @packy.manager.manager_factory

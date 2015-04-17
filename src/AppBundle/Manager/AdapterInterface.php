@@ -9,18 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Fetcher;
+namespace AppBundle\Manager;
 
-use AppBundle\Entity\Project;
 
-interface FetcherInterface
+interface AdapterInterface
 {
+
     /**
-     * Fetch the dependencies
+     * Get the file contents
      *
-     * @param Project $project
+     * @param string $file
+     * @param string $branch
      *
-     * @return array
+     * @return string
      */
-    public function fetchDependencies(Project $project);
+    public function getFileContents($file, $branch = 'master');
 }

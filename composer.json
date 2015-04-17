@@ -28,7 +28,10 @@
         "knplabs/knp-menu": "2.0.*",
         "knplabs/knp-menu-bundle": "2.0.*",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
-        "ornicar/gravatar-bundle": "1.1.*"
+        "ornicar/gravatar-bundle": "1.1.*",
+        "knplabs/github-api": "1.4.*",
+        "m4tthumphrey/php-gitlab-api": "7.9.*",
+        "gentle/bitbucket-api": "0.6.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.*"

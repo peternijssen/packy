@@ -25,6 +25,7 @@ class AppExtension extends Extension
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('service/analyzer.yml');
+        $loader->load('service/fetcher.yml');
         $loader->load('service/manager.yml');
         $loader->load('service/repository.yml');
         $loader->load('service/service.yml');

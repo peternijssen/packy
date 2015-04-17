@@ -48,10 +48,9 @@ class ProjectUpdateCommand extends ContainerAwareCommand
         $projects = $projectRepository->findAll();
 
         foreach ($projects as $project) {
-            $manager = $this->getContainer()->get('packy.manager.generic_manager');
-
             // Composer fetcher
-            $dependencies = $manager->getDependencies($project, new ComposerFetcher());
+            $composerFetcher = $this->getContainer()->get('packy.fetcher.composer_fetcher');
+            $dependencies = $composerFetcher->fetchDependencies($project);
 
             foreach ($dependencies as $name => $version) {
                 $package = $packageRepository->findOne($name, 'composer');
@@ -73,7 +72,8 @@ class ProjectUpdateCommand extends ContainerAwareCommand
             }
 
             // Npm fetcher
-            $dependencies = $manager->getDependencies($project, new NpmFetcher());
+            $npmFetcher = $this->getContainer()->get('packy.fetcher.npm_fetcher');
+            $dependencies = $npmFetcher->fetchDependencies($project);
 
             foreach ($dependencies as $name => $version) {
                 $package = $packageRepository->findOne($name, 'npm');
