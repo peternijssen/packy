@@ -24,7 +24,7 @@ class AdapterFactory
      */
     public function createAdapter(Project $project)
     {
-        $className = ucfirst($project->getRepositoryType())."Adapter";
+        $className = "AppBundle\Manager\\".ucfirst($project->getRepositoryType())."Adapter";
 
         if (class_exists($className)) {
             return new $className($project);
