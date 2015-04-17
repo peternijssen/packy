@@ -2,7 +2,7 @@ packy_settings_overview:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: jumph_dashboard_overview
+        route: packy_settings_gitlab_overview
         permanent: true
 packy_settings_gitlab_overview:
     pattern:  /gitlab
