@@ -35,7 +35,7 @@ paths.css = [
     'vendor/components/bootstrap/dist/css/bootstrap.css',
     'vendor/components/fontawesome/css/font-awesome.css',
     'vendor/components/admin-lte/dist/css/AdminLTE.css',
-    'vendor/components/admin-lte/dist/css//skins/skin-red.css',
+    'vendor/components/admin-lte/dist/css/skins/skin-purple.css',
     'app/Resources/public/css/**/*.css'
 ];
 gulp.task('css', ['bower'], function() {

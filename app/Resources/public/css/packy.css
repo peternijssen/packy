@@ -1,5 +1,5 @@
 .nav-tabs-custom > .nav-tabs > li.active {
-    border-top-color: #dd4b39;
+    border-top-color: #605ca8;
 }
 
 .dropdown-menu > li > a.delete:hover {
@@ -9,4 +9,17 @@
 
 .main-footer a {
     color: #000;
+}
+
+.box.box-solid.box-purple {
+    border: 1px solid #605ca8;
+}
+
+.box.box-purple {
+    border-top-color: #605ca8;
+}
+
+.box.box-solid.box-purple>.box-header {
+    color: #FFF;
+    background-color: #605ca8;
 }
