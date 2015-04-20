@@ -24,6 +24,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#composer" data-toggle="tab">Composer</a></li>
                     <li><a href="#npm" data-toggle="tab">NPM</a></li>
+                    <li><a href="#pip" data-toggle="tab">PIP</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="composer">
@@ -76,6 +77,31 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="tab-pane" id="pip">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Package</th>
+                                <th>Current version</th>
+                                <th>Available version</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if pip is empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center">No dependencies found!</td>
+                                </tr>
+                            {% endif %}
+                            {% for dependency in pip %}
+                                <tr>
+                                    <td>{{ dependency.package.name }}</td>
+                                    <td>{{ macro.statusLabel(dependency.rawVersion, dependency.status) }}</td>
+                                    <td>{{ dependency.package.latestVersion }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,7 +139,7 @@
                     type: 'column'
                 },
                 xAxis: {
-                    categories: ['Composer', 'NPM']
+                    categories: ['Composer', 'NPM', 'PIP']
                 },
                 yAxis: {
                     min: 0,
@@ -143,13 +169,13 @@
                 ],
                 series: [{
                     name: 'Outdated',
-                    data: [5, 3]
+                    data: [5, 3, 1]
                 }, {
                     name: 'Unstable',
-                    data: [2, 2]
+                    data: [2, 2, 1]
                 }, {
                     name: 'Stable',
-                    data: [3, 4]
+                    data: [3, 4, 7]
                 }]
             });
         });

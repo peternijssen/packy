@@ -92,6 +92,29 @@ class ProjectUpdateCommand extends ContainerAwareCommand
                 $project->addDependency($dependency);
             }
 
+            // Pip fetcher
+            $pipFetcher = $this->getContainer()->get('packy.fetcher.pip_fetcher');
+            $dependencies = $pipFetcher->fetchDependencies($project);
+
+            foreach ($dependencies as $name => $version) {
+                $package = $packageRepository->findOne($name, 'pip');
+                if (is_null($package)) {
+                    $package = new Package();
+                    $package->setName($name);
+                    $package->setManager('pip');
+                    $packageRepository->create($package);
+                }
+
+                $package = $analyzer->analyzePackage($package, $package->getManager());
+                $packageRepository->update($package);
+
+                $dependency = new Dependency();
+                $dependency->setPackage($package);
+                $dependency->setRawVersion($version);
+                $dependency->setCurrentVersion($versionFormatter->normalizeVersion($version));
+                $project->addDependency($dependency);
+            }
+
             $projectRepository->update($project);
 
             $output->writeln("<info>Project ".$project->getName()." updated!</info>");

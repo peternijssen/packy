@@ -7,3 +7,7 @@ services:
         class: AppBundle\Fetcher\NpmFetcher
         arguments:
             - @packy.manager.adapter_factory
+    packy.fetcher.pip_fetcher:
+        class: AppBundle\Fetcher\PipFetcher
+        arguments:
+            - @packy.manager.adapter_factory

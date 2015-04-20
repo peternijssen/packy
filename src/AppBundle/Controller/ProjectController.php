@@ -90,6 +90,7 @@ class ProjectController extends Controller
                 'project' => $project,
                 'composer' => $dependencyRepository->findAll($project, 'composer'),
                 'npm' => $dependencyRepository->findAll($project, 'npm'),
+                'pip' => $dependencyRepository->findAll($project, 'pip'),
             )
         );
     }
