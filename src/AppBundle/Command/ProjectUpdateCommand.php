@@ -43,7 +43,8 @@ class ProjectUpdateCommand extends ContainerAwareCommand
         $analyzer = $this->getContainer()->get('packy.analyzer.generic_analyzer');
         $versionFormatter = $this->getContainer()->get('packy.service.version_formatter');
         $fetchers = $this->getContainer()->get('packy.fetchers');
-        $fetchers = $fetchers->getFetchers();
+        //$fetchers = $fetchers->getFetchers();
+        $fetchers = array($this->getContainer()->get('packy.fetcher.bower_fetcher'));
 
         $projects = $projectRepository->findAll();
 

@@ -19,3 +19,9 @@ services:
             - @packy.manager.adapter_factory
         tags:
             -  { name: packy_fetcher }
+    packy.fetcher.bower_fetcher:
+        class: AppBundle\Fetcher\BowerFetcher
+        arguments:
+            - @packy.manager.adapter_factory
+        tags:
+            -  { name: packy_fetcher }

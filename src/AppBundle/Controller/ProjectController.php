@@ -84,13 +84,20 @@ class ProjectController extends Controller
     {
         $dependencyRepository = $this->get('packy.repository.dependency');
 
+        $fetchers = $this->get('packy.fetchers');
+        $fetchers = $fetchers->getFetchers();
+
+        $vendors = array();
+        foreach ($fetchers as $fetcher) {
+            $name = $fetcher->getName();
+            $vendors[$name] = $dependencyRepository->findAll($project, $name);
+        }
+
         return $this->render(
             "AppBundle:Project:analyze.html.twig",
             array(
                 'project' => $project,
-                'composer' => $dependencyRepository->findAll($project, 'composer'),
-                'npm' => $dependencyRepository->findAll($project, 'npm'),
-                'pip' => $dependencyRepository->findAll($project, 'pip'),
+                'vendors' => $vendors,
             )
         );
     }

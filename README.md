@@ -9,8 +9,6 @@ Packy is an open source tool to validate if your dependencies are up 2 date. Pac
 - Composer
 - Npm
 - Pip
-
-**Upcoming analyzers**
 - Bower
 
 Screenshots
