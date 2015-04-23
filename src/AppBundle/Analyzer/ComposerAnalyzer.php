@@ -38,7 +38,7 @@ class ComposerAnalyzer implements AnalyzerInterface
         );
 
         if ($response->getStatusCode() == 200) {
-            $data = $this->parseJson($response->getBody());
+            $data = $this->parseJson((string) $response->getBody());
 
             $newestVersion = $this->getLatestVersion(array_keys($data['package']['versions']));
             $package->setLatestVersion($newestVersion);

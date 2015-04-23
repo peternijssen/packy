@@ -38,7 +38,7 @@ class NpmAnalyzer implements AnalyzerInterface
         );
 
         if ($response->getStatusCode() == 200) {
-            $data = $this->parseJson($response->getBody());
+            $data = $this->parseJson((string) $response->getBody());
 
             $newestVersion = $data['dist-tags']['latest'];
             $package->setLatestVersion($newestVersion);
