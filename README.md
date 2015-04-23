@@ -31,6 +31,13 @@ Packy is not production ready yet. However, if you want to install it already or
 - Make sure a database connection has been set in `app/config/parameters.yml`
 - Run `php app/console packy:install`
 
+Usage
+=====
+
+You can use packy by logging in with your created admin account. After logging in, you can create a project. To check the project for it's dependencies and to check if the dependencies are up 2 date, run `app/console packy:project:update`.
+If you only want to check if there are new versions of packages, you can run `app/console packy:package:update`
+
+
 Contributing
 =====
 
