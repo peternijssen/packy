@@ -2,7 +2,15 @@
     "name": "peternijssen/packy",
     "license": "MIT",
     "description": "Packy is an open source tool to validate if your dependencies are up 2 date.",
+    "keywords": ["dependencies", "composer", "bower", "npm", "pip"],
     "type": "project",
+    "authors": [
+      {
+        "name": "Peter Nijssen",
+        "email": "peter@peternijssen.nl",
+        "homepage": "https://www.peternijssen.nl"
+      }
+    ],
     "autoload": {
         "psr-0": {
             "": "src/",
