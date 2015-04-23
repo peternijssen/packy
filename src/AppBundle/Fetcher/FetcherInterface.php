@@ -23,4 +23,11 @@ interface FetcherInterface
      * @return array
      */
     public function fetchDependencies(Project $project);
+
+    /**
+     * Get the name of the fetcher
+     *
+     * @return string
+     */
+    public function getName();
 }

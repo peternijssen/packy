@@ -65,4 +65,14 @@ class NpmFetcher extends AbstractFetcher
 
         return array();
     }
+
+    /**
+     * Get the name of the fetcher
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return "npm";
+    }
 }

@@ -60,4 +60,14 @@ class PipFetcher extends AbstractFetcher
 
         return $dependencies;
     }
+
+    /**
+     * Get the name of the fetcher
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return "pip";
+    }
 }

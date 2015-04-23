@@ -42,77 +42,33 @@ class ProjectUpdateCommand extends ContainerAwareCommand
         $packageRepository = $this->getContainer()->get('packy.repository.package');
         $analyzer = $this->getContainer()->get('packy.analyzer.generic_analyzer');
         $versionFormatter = $this->getContainer()->get('packy.service.version_formatter');
+        $fetchers = $this->getContainer()->get('packy.fetchers');
+        $fetchers = $fetchers->getFetchers();
 
         $projects = $projectRepository->findAll();
 
         foreach ($projects as $project) {
-            // Composer fetcher
-            $composerFetcher = $this->getContainer()->get('packy.fetcher.composer_fetcher');
-            $dependencies = $composerFetcher->fetchDependencies($project);
+            foreach ($fetchers as $fetcher) {
+                $dependencies = $fetcher->fetchDependencies($project);
 
-            foreach ($dependencies as $name => $version) {
-                $package = $packageRepository->findOne($name, 'composer');
-                if (is_null($package)) {
-                    $package = new Package();
-                    $package->setName($name);
-                    $package->setManager('composer');
-                    $packageRepository->create($package);
+                foreach ($dependencies as $name => $version) {
+                    $package = $packageRepository->findOne($name, $fetcher->getName());
+                    if (is_null($package)) {
+                        $package = new Package();
+                        $package->setName($name);
+                        $package->setManager($fetcher->getName());
+                        $packageRepository->create($package);
+                    }
+
+                    $package = $analyzer->analyzePackage($package, $package->getManager());
+                    $packageRepository->update($package);
+
+                    $dependency = new Dependency();
+                    $dependency->setPackage($package);
+                    $dependency->setRawVersion($version);
+                    $dependency->setCurrentVersion($versionFormatter->normalizeVersion($version));
+                    $project->addDependency($dependency);
                 }
-                
-                $package = $analyzer->analyzePackage($package, $package->getManager());
-                $packageRepository->update($package);
-
-                $dependency = new Dependency();
-                $dependency->setPackage($package);
-                $dependency->setRawVersion($version);
-                $dependency->setCurrentVersion($versionFormatter->normalizeVersion($version));
-                $project->addDependency($dependency);
-            }
-
-            // Npm fetcher
-            $npmFetcher = $this->getContainer()->get('packy.fetcher.npm_fetcher');
-            $dependencies = $npmFetcher->fetchDependencies($project);
-
-            foreach ($dependencies as $name => $version) {
-                $package = $packageRepository->findOne($name, 'npm');
-                if (is_null($package)) {
-                    $package = new Package();
-                    $package->setName($name);
-                    $package->setManager('npm');
-                    $packageRepository->create($package);
-                }
-
-                $package = $analyzer->analyzePackage($package, $package->getManager());
-                $packageRepository->update($package);
-
-                $dependency = new Dependency();
-                $dependency->setPackage($package);
-                $dependency->setRawVersion($version);
-                $dependency->setCurrentVersion($versionFormatter->normalizeVersion($version));
-                $project->addDependency($dependency);
-            }
-
-            // Pip fetcher
-            $pipFetcher = $this->getContainer()->get('packy.fetcher.pip_fetcher');
-            $dependencies = $pipFetcher->fetchDependencies($project);
-
-            foreach ($dependencies as $name => $version) {
-                $package = $packageRepository->findOne($name, 'pip');
-                if (is_null($package)) {
-                    $package = new Package();
-                    $package->setName($name);
-                    $package->setManager('pip');
-                    $packageRepository->create($package);
-                }
-
-                $package = $analyzer->analyzePackage($package, $package->getManager());
-                $packageRepository->update($package);
-
-                $dependency = new Dependency();
-                $dependency->setPackage($package);
-                $dependency->setRawVersion($version);
-                $dependency->setCurrentVersion($versionFormatter->normalizeVersion($version));
-                $project->addDependency($dependency);
             }
 
             $projectRepository->update($project);
