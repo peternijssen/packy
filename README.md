@@ -16,9 +16,9 @@ Screenshots
 
 ![Packy](http://i60.tinypic.com/2mgtxdj.png)
 
-![Packy](http://i61.tinypic.com/es98o3.png)
+![Packy](http://i61.tinypic.com/x4q4ao.png)
 
-![Packy](http://i58.tinypic.com/2ptdz5y.png)
+![Packy](http://i61.tinypic.com/2zqv695.png)
 
 Installation
 =====
