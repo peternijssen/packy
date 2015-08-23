@@ -11,9 +11,9 @@
   ],
   "dependencies": {
     "jquery": "2.1.4",
-    "bootstrap": "3.3.4",
-    "fontawesome": "4.3.0",
-    "admin-lte": "2.1.1",
-    "highcharts": "4.1.5"
+    "bootstrap": "3.3.5",
+    "fontawesome": "4.4.0",
+    "admin-lte": "2.3.0",
+    "highcharts": "4.1.8"
   }
 }
