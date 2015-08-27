@@ -17,24 +17,9 @@ use AppBundle\Manager\AdapterFactory;
 class PipFetcher extends AbstractFetcher
 {
     /**
-     * @var AdapterFactory
-     */
-    private $adapterFactory;
-
-    /**
      * @var string
      */
-    private $packageFileName = 'requirements.txt';
-
-    /**
-     * Constructor
-     *
-     * @param AdapterFactory $adapterFactory
-     */
-    public function __construct(AdapterFactory $adapterFactory)
-    {
-        $this->adapterFactory = $adapterFactory;
-    }
+    protected $packageFileName = 'requirements.txt';
 
     /**
      * Fetch the dependencies
@@ -45,8 +30,7 @@ class PipFetcher extends AbstractFetcher
      */
     public function fetchDependencies(Project $project)
     {
-        $adapter = $this->adapterFactory->createAdapter($project);
-        $fileContent = $adapter->getFileContents($this->packageFileName);
+        $fileContent = $this->fetchFileContent($project);
 
         $lines = explode("\n", $fileContent);
 

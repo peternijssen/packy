@@ -29,13 +29,13 @@
         "sensio/distribution-bundle": "~3.0,>=3.0.12",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "2.*",
-        "guzzlehttp/guzzle": "5.2.*",
+        "guzzlehttp/guzzle": "6.0.*",
         "knplabs/knp-menu": "2.0.*",
         "knplabs/knp-menu-bundle": "2.0.*",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
         "ornicar/gravatar-bundle": "1.1.*",
         "knplabs/github-api": "1.4.*",
-        "m4tthumphrey/php-gitlab-api": "7.9.*",
+        "m4tthumphrey/php-gitlab-api": "7.13.*",
         "gentle/bitbucket-api": "0.6.*"
     },
     "require-dev": {

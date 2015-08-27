@@ -41,6 +41,10 @@ AppBundle\Entity\Project:
             type: string
             length: 50
             column: package_name
+        branch:
+            type: string
+            length: 50
+            column: branch
         createdAt:
             type: datetime
             column: created_at

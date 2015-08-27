@@ -53,6 +53,11 @@ class Project
     private $packageName;
 
     /**
+     * @var string
+     */
+    private $branch;
+
+    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -175,7 +180,7 @@ class Project
 
         foreach ($this->dependencies as $k => $dep) {
             if ($dep->getPackage()->getName() == $dependency->getPackage()->getName()) {
-                $this->dependencies[$k] = $dep;
+                $dep->setCurrentVersion($dependency->getCurrentVersion());
 
                 return $this;
             }
@@ -276,6 +281,30 @@ class Project
     public function getPackageName()
     {
         return $this->packageName;
+    }
+
+    /**
+     * Set branch
+     *
+     * @param string $branch
+     *
+     * @return Project
+     */
+    public function setBranch($branch)
+    {
+        $this->branch = $branch;
+
+        return $this;
+    }
+
+    /**
+     * Get branch
+     *
+     * @return string
+     */
+    public function getBranch()
+    {
+        return $this->branch;
     }
 
     /**

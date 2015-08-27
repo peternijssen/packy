@@ -30,7 +30,8 @@ class ProjectFormType extends AbstractType
             ))
             ->add('repositoryUrl')
             ->add('vendorName')
-            ->add('packageName');
+            ->add('packageName')
+            ->add('branch');
     }
 
     /**

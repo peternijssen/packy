@@ -17,24 +17,9 @@ use AppBundle\Manager\AdapterFactory;
 class ComposerFetcher extends AbstractFetcher
 {
     /**
-     * @var AdapterFactory
-     */
-    private $adapterFactory;
-
-    /**
      * @var string
      */
-    private $packageFileName = 'composer.json';
-
-    /**
-     * Constructor
-     *
-     * @param AdapterFactory $adapterFactory
-     */
-    public function __construct(AdapterFactory $adapterFactory)
-    {
-        $this->adapterFactory = $adapterFactory;
-    }
+    protected $packageFileName = 'composer.json';
 
     /**
      * Fetch the dependencies
@@ -45,19 +30,16 @@ class ComposerFetcher extends AbstractFetcher
      */
     public function fetchDependencies(Project $project)
     {
-        $adapter = $this->adapterFactory->createAdapter($project);
-        $fileContent = $adapter->getFileContents($this->packageFileName);
+        $fileContent = $this->fetchFileContent($project);
 
-        $parsed = $this->parseJson($fileContent);
-
-        if (is_array($parsed)) {
+        if (is_array($fileContent)) {
             $dependencies = array();
-            if (array_key_exists('require', $parsed)) {
-                $dependencies = array_merge($dependencies, $parsed['require']);
+            if (array_key_exists('require', $fileContent)) {
+                $dependencies = array_merge($dependencies, $fileContent['require']);
             }
 
-            if (array_key_exists('require-dev', $parsed)) {
-                $dependencies = array_merge($dependencies, $parsed['require-dev']);
+            if (array_key_exists('require-dev', $fileContent)) {
+                $dependencies = array_merge($dependencies, $fileContent['require-dev']);
             }
             unset($dependencies['php']);
 

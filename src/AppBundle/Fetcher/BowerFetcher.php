@@ -17,24 +17,9 @@ use AppBundle\Manager\AdapterFactory;
 class BowerFetcher extends AbstractFetcher
 {
     /**
-     * @var AdapterFactory
-     */
-    private $adapterFactory;
-
-    /**
      * @var string
      */
-    private $packageFileName = 'bower.json';
-
-    /**
-     * Constructor
-     *
-     * @param AdapterFactory $adapterFactory
-     */
-    public function __construct(AdapterFactory $adapterFactory)
-    {
-        $this->adapterFactory = $adapterFactory;
-    }
+    protected $packageFileName = 'bower.json';
 
     /**
      * Fetch the dependencies
@@ -45,14 +30,11 @@ class BowerFetcher extends AbstractFetcher
      */
     public function fetchDependencies(Project $project)
     {
-        $adapter = $this->adapterFactory->createAdapter($project);
-        $fileContent = $adapter->getFileContents($this->packageFileName);
+        $fileContent = $this->fetchFileContent($project);
 
-        $parsed = $this->parseJson($fileContent);
-
-        if (is_array($parsed)) {
-            if (array_key_exists('dependencies', $parsed)) {
-                return $parsed['dependencies'];
+        if (is_array($fileContent)) {
+            if (array_key_exists('dependencies', $fileContent)) {
+                return $fileContent['dependencies'];
             }
         }
 

@@ -17,24 +17,9 @@ use AppBundle\Manager\AdapterFactory;
 class NpmFetcher extends AbstractFetcher
 {
     /**
-     * @var AdapterFactory
-     */
-    private $adapterFactory;
-
-    /**
      * @var string
      */
-    private $packageFileName = 'package.json';
-
-    /**
-     * Constructor
-     *
-     * @param AdapterFactory $adapterFactory
-     */
-    public function __construct(AdapterFactory $adapterFactory)
-    {
-        $this->adapterFactory = $adapterFactory;
-    }
+    protected $packageFileName = 'package.json';
 
     /**
      * Fetch the dependencies
@@ -45,19 +30,16 @@ class NpmFetcher extends AbstractFetcher
      */
     public function fetchDependencies(Project $project)
     {
-        $adapter = $this->adapterFactory->createAdapter($project);
-        $fileContent = $adapter->getFileContents($this->packageFileName);
+        $fileContent = $this->fetchFileContent($project);
 
-        $parsed = $this->parseJson($fileContent);
-
-        if (is_array($parsed)) {
+        if (is_array($fileContent)) {
             $dependencies = array();
-            if (array_key_exists('dependencies', $parsed)) {
-                $dependencies = array_merge($dependencies, $parsed['dependencies']);
+            if (array_key_exists('dependencies', $fileContent)) {
+                $dependencies = array_merge($dependencies, $fileContent['dependencies']);
             }
 
-            if (array_key_exists('devDependencies', $parsed)) {
-                $dependencies = array_merge($dependencies, $parsed['devDependencies']);
+            if (array_key_exists('devDependencies', $fileContent)) {
+                $dependencies = array_merge($dependencies, $fileContent['devDependencies']);
             }
 
             return $dependencies;
