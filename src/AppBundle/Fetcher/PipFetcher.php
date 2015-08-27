@@ -12,7 +12,6 @@
 namespace AppBundle\Fetcher;
 
 use AppBundle\Entity\Project;
-use AppBundle\Manager\AdapterFactory;
 
 class PipFetcher extends AbstractFetcher
 {
