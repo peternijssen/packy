@@ -11,6 +11,11 @@ Packy is an open source tool to validate if your dependencies are up 2 date. Pac
 - Pip
 - Bower
 
+**Current managers**
+- Github
+- Bitbucket
+- Gitlab
+
 Screenshots
 =====
 
