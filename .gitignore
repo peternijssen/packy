@@ -10,3 +10,5 @@
 /bin/
 /vendor/
 /node_modules/*
+Capfile
+/app/config/deploy.rb

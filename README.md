@@ -16,6 +16,13 @@ Packy is an open source tool to validate if your dependencies are up 2 date. Pac
 - Bitbucket
 - Gitlab
 
+Demo
+=====
+You can find a demo application here;
+[https://packy.peternijssen.nl](https://packy.peternijssen.nl)
+
+You can log in with "demo" / "demo"
+
 Screenshots
 =====
 
