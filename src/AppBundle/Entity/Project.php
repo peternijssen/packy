@@ -308,6 +308,13 @@ class Project
         return $this->branch;
     }
 
+    /**
+     * Get the total stats
+     *
+     * @todo: Refactor into a service
+     *
+     * @return array
+     */
     public function getTotalStats()
     {
         $stats = array("unstable" => 0, "stable" => 0, "outdated" => 0);
