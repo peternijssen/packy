@@ -170,6 +170,8 @@ class Project
     /**
      * Add dependencies
      *
+     * @TODO: Refactor
+     *
      * @param Dependency $dependency
      *
      * @return Project
@@ -181,6 +183,7 @@ class Project
         foreach ($this->dependencies as $k => $dep) {
             if ($dep->getPackage()->getName() == $dependency->getPackage()->getName()) {
                 $dep->setCurrentVersion($dependency->getCurrentVersion());
+                $dep->setRawVersion($dependency->getRawVersion());
                 $dep->setRawVersion($dependency->getRawVersion());
 
                 return $this;

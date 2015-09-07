@@ -87,11 +87,38 @@ class ProjectController extends Controller
         $fetchers = $this->get('packy.fetchers');
         $fetchers = $fetchers->getFetchers();
 
+        //@TODO: Refactor
         $vendors = array();
-        $stats = array();
         foreach ($fetchers as $fetcher) {
             $name = $fetcher->getName();
-            $vendors[$name] = $dependencyRepository->findAll($project, $name);
+            $dependencies = $dependencyRepository->findAllByManager($project, $name);
+            if (!empty($dependencies)) {
+                $vendors[$name] = $dependencies;
+            }
+        }
+
+        //@TODO: BIG Refactor
+        $stats = array(
+            'outdated' => array(),
+            'unstable' => array(),
+            'stable' => array(),
+        );
+
+        foreach ($vendors as $name => $dependencies) {
+            foreach ($stats as &$stat) {
+                $stat[$name] = 0;
+            }
+
+            unset($stat);
+
+            foreach ($stats as $type => $stat) {
+                foreach ($dependencies as $dependency) {
+                    if ($dependency->getStatus() == $type) {
+                        $stats[$type][$name] += 1;
+                    }
+                }
+            }
+
         }
 
         return $this->render(

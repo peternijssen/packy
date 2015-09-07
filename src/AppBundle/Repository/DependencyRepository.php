@@ -50,6 +50,27 @@ class DependencyRepository
     }
 
     /**
+     * Find all dependencies for a certain manager
+     *
+     * @param Project $project
+     * @param string  $sortField
+     * @param string  $sortOrder
+     *
+     * @return array
+     */
+    public function findAllByProject(Project $project, $sortField = 'pa.name', $sortOrder = 'ASC')
+    {
+        return $this->getQueryBuilder()
+            ->leftJoin(self::ENTITY_ALIAS.'.project', 'p')
+            ->leftJoin(self::ENTITY_ALIAS.'.package', 'pa')
+            ->where('p = :project')
+            ->setParameter('project', $project)
+            ->orderBy($sortField, $sortOrder)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * Find all dependencies for a certain project and manager
      *
      * @param Project $project
@@ -59,7 +80,7 @@ class DependencyRepository
      *
      * @return array
      */
-    public function findAll(Project $project, $manager, $sortField = 'pa.name', $sortOrder = 'ASC')
+    public function findAllByManager(Project $project, $manager, $sortField = 'pa.name', $sortOrder = 'ASC')
     {
         return $this->getQueryBuilder()
             ->leftJoin(self::ENTITY_ALIAS.'.project', 'p')
