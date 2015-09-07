@@ -54,6 +54,23 @@ class BitbucketAdapter implements AdapterInterface
             $file
         );
 
-        return $response->getContent();
+        return $this->parseJson($response->getContent());
+    }
+
+    /**
+     * Parse JSON data
+     *
+     * @param string $data
+     *
+     * @return mixed
+     */
+    private function parseJson($data)
+    {
+        $parsedData = json_decode($data, true);
+        if ($parsedData === false) {
+            throw new \RuntimeException('Unable to parse json file');
+        }
+
+        return $parsedData;
     }
 }

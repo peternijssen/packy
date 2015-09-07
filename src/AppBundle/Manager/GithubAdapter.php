@@ -54,9 +54,26 @@ class GithubAdapter implements AdapterInterface
                 $branch
             );
 
-            return $fileContent;
+            return $this->parseJson($fileContent);
         } catch (\Github\Exception\RuntimeException $e) {
             return "";
         }
+    }
+
+    /**
+     * Parse JSON data
+     *
+     * @param string $data
+     *
+     * @return mixed
+     */
+    private function parseJson($data)
+    {
+        $parsedData = json_decode($data, true);
+        if ($parsedData === false) {
+            throw new \RuntimeException('Unable to parse json file');
+        }
+
+        return $parsedData;
     }
 }

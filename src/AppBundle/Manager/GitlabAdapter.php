@@ -33,7 +33,7 @@ class GitlabAdapter implements AdapterInterface
     public function __construct(Project $project)
     {
         $this->project = $project;
-        $this->client = new \Gitlab\Client('/api/v3/');
+        $this->client = new \Gitlab\Client('');
         $this->client->authenticate("", \Gitlab\Client::AUTH_URL_TOKEN);
     }
 
@@ -54,9 +54,29 @@ class GitlabAdapter implements AdapterInterface
                 $branch
             );
 
-            return $fileContent;
+            return $this->parseJson($fileContent);
         } catch (\Gitlab\Exception\RuntimeException $e) {
             return "";
         }
+    }
+
+    /**
+     * Parse JSON data
+     *
+     * @param string $data
+     *
+     * @return mixed
+     */
+    private function parseJson($data)
+    {
+        if ($data === false) {
+            throw new \RuntimeException('Unable to parse json file');
+        }
+
+        if (array_key_exists('content', $data)) {
+            return json_decode(base64_decode($data['content']), true);
+        }
+
+        return "";
     }
 }

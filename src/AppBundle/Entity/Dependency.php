@@ -108,6 +108,72 @@ class Dependency
     }
 
     /**
+     * Set project
+     *
+     * @param Project $project
+     *
+     * @return Dependency
+     */
+    public function setProject(Project $project = null)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Set package
+     *
+     * @param Package $package
+     *
+     * @return Dependency
+     */
+    public function setPackage(Package $package = null)
+    {
+        $this->package = $package;
+
+        return $this;
+    }
+
+    /**
+     * Get package
+     *
+     * @return Package
+     */
+    public function getPackage()
+    {
+        return $this->package;
+    }
+
+    /**
+     * Get status
+     *
+     * @return bool
+     */
+    public function getStatus()
+    {
+        if (preg_match('/[a-zA-Z]+$/', $this->getRawVersion())) {
+            return "unstable";
+        }
+
+        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) <= 0) {
+            return "stable";
+        }
+
+        return "outdated";
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -153,71 +219,5 @@ class Dependency
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set project
-     *
-     * @param Project $project
-     *
-     * @return Dependency
-     */
-    public function setProject(Project $project = null)
-    {
-        $this->project = $project;
-
-        return $this;
-    }
-
-    /**
-     * Get project
-     *
-     * @return Project
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
-    
-    /**
-     * Set package
-     *
-     * @param Package $package
-     *
-     * @return Dependency
-     */
-    public function setPackage(Package $package = null)
-    {
-        $this->package = $package;
-
-        return $this;
-    }
-
-    /**
-     * Get package
-     *
-     * @return Package
-     */
-    public function getPackage()
-    {
-        return $this->package;
-    }
-
-    /**
-     * Get status
-     *
-     * @return bool
-     */
-    public function getStatus()
-    {
-        if (preg_match('/[a-zA-Z]+$/', $this->getRawVersion())) {
-            return "unstable";
-        }
-
-        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) <= 0) {
-            return "stable";
-        }
-
-        return "outdated";
     }
 }

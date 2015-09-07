@@ -308,6 +308,17 @@ class Project
         return $this->branch;
     }
 
+    public function getTotalStats()
+    {
+        $stats = array("unstable" => 0, "stable" => 0, "outdated" => 0);
+
+        foreach ($this->getDependencies() as $dependency) {
+            $stats[$dependency->getStatus()] += 1;
+        }
+
+        return $stats;
+    }
+
     /**
      * Set createdAt
      *

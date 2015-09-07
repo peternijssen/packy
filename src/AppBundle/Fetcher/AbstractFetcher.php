@@ -48,25 +48,6 @@ abstract class AbstractFetcher implements FetcherInterface
         $adapter = $this->adapterFactory->createAdapter($project);
         $fileContent = $adapter->getFileContents($this->packageFileName, $project->getBranch());
 
-        $parsed = $this->parseJson($fileContent);
-
-        return $parsed;
-    }
-
-    /**
-     * Parse JSON data
-     *
-     * @param string $data
-     *
-     * @return mixed
-     */
-    private function parseJson($data)
-    {
-        $parsedData = json_decode($data, true);
-        if ($parsedData === false) {
-            throw new \RuntimeException('Unable to parse json file');
-        }
-
-        return $parsedData;
+        return $fileContent;
     }
 }

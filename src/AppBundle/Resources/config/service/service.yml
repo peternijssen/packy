@@ -5,6 +5,8 @@ services:
         class: AppBundle\Service\SettingsService
         arguments:
             - @packy.repository.setting
+    packy.service.statistics_servce:
+        class: AppBundle\Service\StatisticsService
     packy.menu.voter.route_voter:
         class: AppBundle\Menu\Voter\RouteVoter
         arguments:

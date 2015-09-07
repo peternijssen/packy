@@ -88,6 +88,7 @@ class ProjectController extends Controller
         $fetchers = $fetchers->getFetchers();
 
         $vendors = array();
+        $stats = array();
         foreach ($fetchers as $fetcher) {
             $name = $fetcher->getName();
             $vendors[$name] = $dependencyRepository->findAll($project, $name);
@@ -98,6 +99,7 @@ class ProjectController extends Controller
             array(
                 'project' => $project,
                 'vendors' => $vendors,
+                'stats' => $stats
             )
         );
     }

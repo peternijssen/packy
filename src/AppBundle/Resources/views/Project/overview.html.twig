@@ -19,9 +19,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Project name</th>
-                            <th>Stats</th>
-                            <th>Options</th>
+                            <th class="col-xs-6">Project name</th>
+                            <th class="col-xs-5">Stats</th>
+                            <th class="col-xs-1">Options</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,15 @@
                             {% for project in projects  %}
                                 <tr>
                                     <td>{{ project.name }}</td>
-                                    <td>0</td>
+                                    <td>
+                                        {% set stat = project.getTotalStats() %}
+                                        <span class="label label-success">{{ stat['stable'] }}</span>
+                                        &nbsp;
+                                        <span class="label label-warning">{{ stat['unstable'] }}</span>
+                                        &nbsp;
+                                        <span class="label label-danger">{{ stat['outdated'] }}</span>
+
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
