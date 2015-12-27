@@ -3,7 +3,7 @@ Packy [![Build Status](https://scrutinizer-ci.com/g/peternijssen/packy/badges/bu
 
 **Description**
 
-Packy is an open source tool to validate if your dependencies are up 2 date. Packy is still in development and is not production ready yet.
+Packy is an open source tool to validate if your dependencies are up 2 date.
 
 **Current analyzers**
 - Composer
@@ -13,6 +13,8 @@ Packy is an open source tool to validate if your dependencies are up 2 date. Pac
 
 **Current managers**
 - Github
+
+**In development**
 - Bitbucket
 - Gitlab
 
@@ -32,22 +34,12 @@ Screenshots
 
 ![Packy](http://i61.tinypic.com/2zqv695.png)
 
-Installation
-=====
-
-Packy is not production ready yet. However, if you want to install it already or you want to contribute, follow these steps:
-- install gulp `npm install gulp`
-- install gulp dependencies `npm install `
-- run `gulp watch` to get assets
-- Run `composer install` to install php dependencies
-- Make sure a database connection has been set in `app/config/parameters.yml`
-- Run `php app/console packy:install`
 
 Usage
 =====
 
-You can use packy by logging in with your created admin account. After logging in, you can create a project. To check the project for it's dependencies and to check if the dependencies are up 2 date, run `app/console packy:project:update`.
-If you only want to check if there are new versions of packages, you can run `app/console packy:package:update`
+You can use packy by logging in with your created admin account. After logging in, you can create a project. To check the project for it's dependencies and to check if the dependencies are up 2 date, run `bin/console packy:project:update`.
+If you only want to check if there are new versions of packages, you can run `bin/console packy:package:update`
 
 
 Contributing

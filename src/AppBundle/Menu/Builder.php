@@ -49,7 +49,7 @@ class Builder
             )
         );
 
-        $settingsMenu = $menu->addChild(
+        /*$settingsMenu = $menu->addChild(
             'Settings',
             array(
                 'childrenAttributes' => array('class' => 'treeview-menu'),
@@ -61,7 +61,7 @@ class Builder
             )
         );
 
-        $this->settingsMenu($settingsMenu);
+        $this->settingsMenu($settingsMenu);*/
 
         return $menu;
     }

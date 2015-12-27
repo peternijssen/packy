@@ -27,7 +27,7 @@ class ProjectFormType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('repositoryType', ChoiceType::class, array(
-                'choices' => array('github' => 'Github', 'gitlab' => 'Gitlab', 'bitbucket' => 'Bitbucket'),
+                'choices' => array('Github' => 'github'/*, 'gitlab' => 'gitlab', 'Bitbucket' => 'bitbucket'*/),
             ))
             ->add('repositoryUrl')
             ->add('vendorName')
