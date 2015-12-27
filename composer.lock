@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "adca8d7b08b96f18f0c8bfac3b6893a1",
-    "content-hash": "15dbd6c879261c810453a987ebd23d3f",
+    "hash": "f6d08df792b667fb9901e291e6488ba3",
+    "content-hash": "c2edf5981b0420f23396c5cd00dc47c2",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1088,22 +1088,22 @@
         },
         {
             "name": "gentle/bitbucket-api",
-            "version": "0.6.2",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gentlero/bitbucket-api.git",
-                "reference": "3916ff89a8913d619523974a66ff979877548585"
+                "reference": "5583d0e8092a0896e56c3349cc86ffaaaa08ab82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gentlero/bitbucket-api/zipball/3916ff89a8913d619523974a66ff979877548585",
-                "reference": "3916ff89a8913d619523974a66ff979877548585",
+                "url": "https://api.github.com/repos/gentlero/bitbucket-api/zipball/5583d0e8092a0896e56c3349cc86ffaaaa08ab82",
+                "reference": "5583d0e8092a0896e56c3349cc86ffaaaa08ab82",
                 "shasum": ""
             },
             "require": {
                 "jacobkiers/oauth": "~1.0.10",
                 "kriswallsmith/buzz": "~0.13",
-                "php": "~5.3"
+                "php": ">=5.3"
             },
             "conflict": {
                 "eabay/bitbucket-repo-sync": "*"
@@ -1138,7 +1138,7 @@
                 "api",
                 "bitbucket"
             ],
-            "time": "2015-05-18 12:05:04"
+            "time": "2015-12-05 07:29:28"
         },
         {
             "name": "guzzle/guzzle",
@@ -1565,16 +1565,16 @@
         },
         {
             "name": "knplabs/github-api",
-            "version": "1.4.15",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "313d7ed61494f525ab93cfd8595ec2d398533220"
+                "reference": "832b7be695ed2733741cd5c79166b4a88fb50786"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/313d7ed61494f525ab93cfd8595ec2d398533220",
-                "reference": "313d7ed61494f525ab93cfd8595ec2d398533220",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/832b7be695ed2733741cd5c79166b4a88fb50786",
+                "reference": "832b7be695ed2733741cd5c79166b4a88fb50786",
                 "shasum": ""
             },
             "require": {
@@ -1622,7 +1622,7 @@
                 "gist",
                 "github"
             ],
-            "time": "2015-08-20 09:44:33"
+            "time": "2015-10-11 02:38:28"
         },
         {
             "name": "knplabs/knp-menu",
