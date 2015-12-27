@@ -14,8 +14,8 @@ before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - composer self-update
     - composer install --no-interaction --dev
-    - bin/console doctrine:database:create --env=test > /dev/null
-    - bin/console doctrine:schema:create --env=test > /dev/null
+    - php bin/console doctrine:database:create --env=test > /dev/null
+    - php bin/console doctrine:schema:create --env=test > /dev/null
     
 script: 
     - phpunit --coverage-text --coverage-clover ./clover.xml
