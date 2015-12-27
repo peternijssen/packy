@@ -11,11 +11,11 @@
 
 namespace AppBundle\Form\Type;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
-class UserFormType extends BaseType
+class UserFormType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -25,8 +25,6 @@ class UserFormType extends BaseType
         $builder
             ->add('firstname')
             ->add('lastname');
-
-        parent::buildForm($builder, $options);
     }
 
     /**
@@ -44,7 +42,8 @@ class UserFormType extends BaseType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getParent()
     {
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 }

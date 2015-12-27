@@ -5,6 +5,6 @@ packy_settings_overview:
         route: packy_settings_gitlab_overview
         permanent: true
 packy_settings_gitlab_overview:
-    pattern:  /gitlab
+    path:     /gitlab
     defaults: { _controller: AppBundle:Settings:gitlab }
     methods:  [GET, POST]

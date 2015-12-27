@@ -4,12 +4,12 @@ services:
     packy.service.settings_service:
         class: AppBundle\Service\SettingsService
         arguments:
-            - @packy.repository.setting
+            - "@packy.repository.setting"
     packy.service.statistics_servce:
         class: AppBundle\Service\StatisticsService
     packy.menu.voter.route_voter:
         class: AppBundle\Menu\Voter\RouteVoter
         arguments:
-            - @request_stack
+            - "@request_stack"
         tags:
             - { name: knp_menu.voter }

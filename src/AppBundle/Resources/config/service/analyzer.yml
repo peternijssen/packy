@@ -4,4 +4,4 @@ services:
     packy.analyzer.generic_analyzer:
         class: AppBundle\Analyzer\GenericAnalyzer
         arguments:
-            - @packy.analyzer.analyzer_factory
+            - "@packy.analyzer.analyzer_factory"

@@ -15,7 +15,6 @@ framework:
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        assets_version: 123
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -25,14 +24,15 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    assets:
+        version: 123
 
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form:
-        resources:
-            - '::form.html.twig'
+    form_themes:
+        - '::form.html.twig'
 
 # Doctrine Configuration
 doctrine:

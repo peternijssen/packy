@@ -1,5 +1,5 @@
 packy_project_overview:
-    pattern:  /overview
+    path:     /overview
     defaults: { _controller: AppBundle:Project:overview }
     methods:  [GET]
 packy_project_add:

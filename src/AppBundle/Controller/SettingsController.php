@@ -31,7 +31,7 @@ class SettingsController extends Controller
 
         $settings = $settingsRepository->getSettingsByName($availableSettings);
 
-        $settingsForm = $this->createForm(new SettingsFormType($settings));
+        $settingsForm = $this->createForm(SettingsFormType::class, null, ['settings' => $settings]);
 
         if ($request->isMethod('POST')) {
             $settingsForm->handleRequest($request);

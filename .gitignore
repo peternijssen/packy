@@ -7,8 +7,8 @@
 /app/sessions/*
 !app/sessions/.gitkeep
 /app/phpunit.xml
-/bin/
 /vendor/
 /node_modules/*
 Capfile
 /app/config/deploy.rb
+.idea/

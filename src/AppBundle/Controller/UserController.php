@@ -50,7 +50,7 @@ class UserController extends Controller
     public function addAction(Request $request)
     {
         $user = new User();
-        $userForm = $this->createForm(new UserFormType($user), $user);
+        $userForm = $this->createForm(UserFormType::class, $user);
 
         if ($request->isMethod('POST')) {
             $userForm->handleRequest($request);
@@ -85,7 +85,7 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $userForm = $this->createForm(new UserFormType($user), $user);
+        $userForm = $this->createForm(UserFormType::class, $user);
 
         if ($request->isMethod('POST')) {
             $userForm->handleRequest($request);

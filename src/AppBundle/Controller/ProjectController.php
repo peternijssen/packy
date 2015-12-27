@@ -50,7 +50,7 @@ class ProjectController extends Controller
     public function addAction(Request $request)
     {
         $project = new Project();
-        $projectForm = $this->createForm(new ProjectFormType(), $project);
+        $projectForm = $this->createForm(ProjectFormType::class, $project);
 
         if ($request->isMethod('POST')) {
             $projectForm->handleRequest($request);
@@ -143,7 +143,7 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project)
     {
-        $projectForm = $this->createForm(new ProjectFormType(), $project);
+        $projectForm = $this->createForm(ProjectFormType::class, $project);
 
         if ($request->isMethod('POST')) {
             $projectForm->handleRequest($request);

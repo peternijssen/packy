@@ -13,31 +13,16 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SettingsFormType extends AbstractType
 {
-    /**
-     * @var array
-     */
-    protected $settings;
-
-    /**
-     * Constructor
-     *
-     * @param array $settings
-     */
-    public function __construct(array $settings)
-    {
-        $this->settings = $settings;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        foreach ($this->settings as $setting) {
+        foreach ($options['settings'] as $setting) {
             $builder->add($setting->getName(), new SettingType($setting));
         }
     }
@@ -45,7 +30,8 @@ class SettingsFormType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired(['settings']);
     }
 }

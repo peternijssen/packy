@@ -15,6 +15,8 @@ use AppBundle\Entity\Setting;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SettingType extends AbstractType
 {
@@ -37,9 +39,9 @@ class SettingType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'hidden');
-        $builder->add('type', 'hidden');
-        $builder->add('value', 'text', array('label' => false));
+        $builder->add('name', HiddenType::class);
+        $builder->add('type', HiddenType::class);
+        $builder->add('value', TextType::class, array('label' => false));
 
         $builder->setData($this->setting);
     }
@@ -52,13 +54,5 @@ class SettingType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Setting',
         ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return '';
     }
 }

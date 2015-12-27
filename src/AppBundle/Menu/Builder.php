@@ -13,9 +13,8 @@ namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use \Knp\Menu\ItemInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
 
-class Builder extends ContainerAware
+class Builder
 {
 
     /**

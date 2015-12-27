@@ -1,5 +1,5 @@
 packy_user_overview:
-    pattern:  /overview
+    path:     /overview
     defaults: { _controller: AppBundle:User:overview }
     methods:  [GET]
 packy_user_add:
