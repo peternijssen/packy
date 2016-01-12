@@ -12,21 +12,41 @@
 namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use \Knp\Menu\ItemInterface;
+use Knp\Menu\ItemInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 class Builder
 {
+    /**
+     * @var FactoryInterface
+     */
+    private $factory;
+
+    /**
+     * @var AuthorizationChecker
+     */
+    private $security;
+
+    /**
+     * @param FactoryInterface     $factory
+     * @param AuthorizationChecker $security
+     *
+     * Add any other dependency you need
+     */
+    public function __construct(FactoryInterface $factory, AuthorizationChecker $security)
+    {
+        $this->factory = $factory;
+        $this->security = $security;
+    }
 
     /**
      * Create the side menu
      *
-     * @param FactoryInterface $factory Menu Factory
-     *
      * @return ItemInterface
      */
-    public function sideMenu(FactoryInterface $factory)
+    public function createSideMenu()
     {
-        $menu = $factory->createItem('root');
+        $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'sidebar-menu');
 
         $menu->addChild(
@@ -39,15 +59,17 @@ class Builder
             )
         );
 
-        $menu->addChild(
-            'Users',
-            array(
-                'route' => 'packy_user_overview',
-                'extras' => array(
-                    'icon' => 'fa-users fa-fw',
-                ),
-            )
-        );
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            $menu->addChild(
+                'Users',
+                [
+                    'route' => 'packy_user_overview',
+                    'extras' => [
+                        'icon' => 'fa-users fa-fw',
+                    ],
+                ]
+            );
+        }
 
         /*$settingsMenu = $menu->addChild(
             'Settings',

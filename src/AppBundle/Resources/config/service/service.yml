@@ -1,15 +1,23 @@
 services:
     packy.service.version_formatter:
         class: AppBundle\Service\VersionFormatter
+
     packy.service.settings_service:
         class: AppBundle\Service\SettingsService
         arguments:
             - "@packy.repository.setting"
-    packy.service.statistics_servce:
-        class: AppBundle\Service\StatisticsService
+
     packy.menu.voter.route_voter:
         class: AppBundle\Menu\Voter\RouteVoter
         arguments:
             - "@request_stack"
         tags:
             - { name: knp_menu.voter }
+
+    packy.menu.builder:
+        class: AppBundle\Menu\Builder
+        arguments:
+            - "@knp_menu.factory"
+            - "@security.authorization_checker"
+        tags:
+            - { name: knp_menu.menu_builder, method: createSideMenu, alias: side_menu }

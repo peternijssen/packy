@@ -25,9 +25,11 @@
                         </tr>
                         </thead>
                         <tbody>
+                            {% if is_granted('ROLE_DEVELOPER') %}
                             <tr>
                                 <td colspan="3" class="text-center"><a href="{{ path('packy_project_add') }}"><i class="fa fa-plus"></i> Add project</a></td>
                             </tr>
+                            {% endif %}
                             {% if projects is empty %}
                                 <tr>
                                     <td colspan="3" class="text-center">No projects found!</td>
@@ -52,9 +54,11 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="{{ path('packy_project_analyze', { 'projectId': project.id }) }}">Analyze</a></li>
-                                                <li><a href="{{ path('packy_project_edit', { 'projectId': project.id }) }}">Edit</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="{{ path('packy_project_delete', { 'projectId': project.id }) }}" class="delete js-delete-item">Delete</a></li>
+                                                {% if is_granted('ROLE_DEVELOPER') %}
+                                                    <li><a href="{{ path('packy_project_edit', { 'projectId': project.id }) }}">Edit</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="{{ path('packy_project_delete', { 'projectId': project.id }) }}" class="delete js-delete-item">Delete</a></li>
+                                                {% endif %}
                                             </ul>
                                         </div>
                                     </td>

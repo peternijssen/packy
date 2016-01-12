@@ -12,6 +12,8 @@
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +26,20 @@ class UserFormType extends AbstractType
     {
         $builder
             ->add('firstname')
-            ->add('lastname');
+            ->add('lastname')
+            ->add('email')
+            ->add('roles', CollectionType::class, array(
+                'entry_type' => ChoiceType::class,
+                'entry_options' => array(
+                    'choices' => array(
+                        'Admin' => 'ROLE_ADMIN',
+                        'Developer' => 'ROLE_DEVELOPER',
+                        'Viewer' => 'ROLE_VIEWER'
+                    ),
+                    'choices_as_values' => true,
+                    'label' => false,
+                ),
+            ));
     }
 
     /**
@@ -37,13 +52,5 @@ class UserFormType extends AbstractType
             'data_class' => 'AppBundle\Entity\User',
             )
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 }
