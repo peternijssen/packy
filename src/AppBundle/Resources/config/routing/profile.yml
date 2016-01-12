@@ -1,0 +1,4 @@
+packy_profile_change_password:
+    path:  /change-password
+    defaults: { _controller: AppBundle:Profile:changePassword }
+    methods:  [GET, POST]

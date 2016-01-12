@@ -1,9 +1,12 @@
 packy_projects:
     resource: "@AppBundle/Resources/config/routing/project.yml"
-    prefix:   /projects
+    prefix: /projects
+packy_profile:
+    resource: "@AppBundle/Resources/config/routing/profile.yml"
+    prefix: /profile
 packy_users:
     resource: "@AppBundle/Resources/config/routing/user.yml"
-    prefix:   /admin/users
+    prefix: /admin/users
 packy_settings:
     resource: "@AppBundle/Resources/config/routing/settings.yml"
-    prefix:   /admin/settings
+    prefix: /admin/settings
