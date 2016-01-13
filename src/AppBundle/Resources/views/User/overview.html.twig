@@ -44,6 +44,9 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="{{ path('packy_user_edit', { 'userId': user.id }) }}">Edit</a></li>
+                                                {% if is_granted('ROLE_ALLOWED_TO_SWITCH') %}
+                                                    <li><a href="{{ path('packy_project_overview', { '_switch_user': user.username }) }}">Impersonate</a></li>
+                                                {% endif %}
                                                 <li class="divider"></li>
                                                 <li><a href="{{ path('packy_user_delete', { 'userId': user.id }) }}" class="delete js-delete-item">Delete</a></li>
                                             </ul>

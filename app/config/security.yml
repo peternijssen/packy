@@ -30,6 +30,7 @@ security:
                 use_referer: true
             logout: true
             anonymous: false
+            switch_user: true
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
