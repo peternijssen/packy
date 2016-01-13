@@ -34,7 +34,7 @@ class ProfileController extends Controller
             $profileForm->handleRequest($request);
             if ($profileForm->isValid()) {
 
-                if (0 !== strlen($password = $user->getPlainPassword())) {
+                if (0 !== strlen($user->getPlainPassword())) {
                     $encoder = $this->container->get('security.password_encoder');
                     $user->setPassword($encoder->encodePassword($user, $user->getPlainPassword()));
                     $user->eraseCredentials();
