@@ -1,5 +1,16 @@
-Packy [![Build Status](https://scrutinizer-ci.com/g/peternijssen/packy/badges/build.png?b=master)](https://scrutinizer-ci.com/g/peternijssen/packy/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/peternijssen/packy/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/peternijssen/packy/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/peternijssen/packy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/peternijssen/packy/?branch=master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73/mini.png)](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73)
-=====
+Packy
+====
+
+[![Author](http://img.shields.io/badge/author-@ptnijssen-blue.svg?style=flat-square)](https://twitter.com/ptnijssen)
+[![Build Status](https://img.shields.io/travis/peternijssen/packy/master.svg?style=flat-square)](https://travis-ci.org/peternijssen/packy)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/peternijssen/packy.svg?style=flat-square)](https://scrutinizer-ci.com/g/peternijssen/packy/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/peternijssen/packy.svg?style=flat-square)](https://scrutinizer-ci.com/g/peternijssen/packy)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Packagist Version](https://img.shields.io/packagist/v/peternijssen/packy.svg?style=flat-square)](https://packagist.org/packages/peternijssen/packy)
+[![Total Downloads](https://img.shields.io/packagist/dt/peternijssen/packy.svg?style=flat-square)](https://packagist.org/packages/peternijssen/packy)
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73/small.png)](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73)
+
 
 **Description**
 
