@@ -10,6 +10,7 @@ Packy
 [![Total Downloads](https://img.shields.io/packagist/dt/peternijssen/packy.svg?style=flat-square)](https://packagist.org/packages/peternijssen/packy)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73/mini.png)](https://insight.sensiolabs.com/projects/d43bceaf-afaa-48fd-99ce-52cb437e5d73)
 
+***You are currently viewing the web tool. If you want to view the CLI tool, please check [https://github.com/peternijssen/packy](https://github.com/peternijssen/packy-cli)***
 
 **Description**
 
