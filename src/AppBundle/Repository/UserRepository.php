@@ -18,21 +18,21 @@ use Doctrine\ORM\QueryBuilder;
 class UserRepository
 {
     /**
-     * Entity alias
+     * Entity alias.
      *
      * @var string
      */
     const ENTITY_ALIAS = 'u';
 
     /**
-     * Entity to use
+     * Entity to use.
      *
      * @var string
      */
     const ENTITY_CLASS = 'AppBundle:User';
 
     /**
-     * Entity manager
+     * Entity manager.
      *
      * @var ObjectManager
      */
@@ -49,7 +49,7 @@ class UserRepository
     }
 
     /**
-     * Find all users
+     * Find all users.
      *
      * @param string $sortField
      * @param string $sortOrder
@@ -59,13 +59,13 @@ class UserRepository
     public function findAll($sortField = 'createdAt', $sortOrder = 'DESC')
     {
         return $this->getQueryBuilder()
-            ->orderBy(self::ENTITY_ALIAS.'.'.$sortField, $sortOrder)
+            ->orderBy(self::ENTITY_ALIAS . '.' . $sortField, $sortOrder)
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * Create an user
+     * Create an user.
      *
      * @param User $user
      */
@@ -76,7 +76,7 @@ class UserRepository
     }
 
     /**
-     * Update an user
+     * Update an user.
      *
      * @param User $user
      */
@@ -87,7 +87,7 @@ class UserRepository
     }
 
     /**
-     * Delete an user
+     * Delete an user.
      *
      * @param User $user
      */
@@ -98,7 +98,7 @@ class UserRepository
     }
 
     /**
-     * Return a new query builder
+     * Return a new query builder.
      *
      * @return QueryBuilder
      */

@@ -1,0 +1,18 @@
+services:
+    packy.repository_managers:
+        class: AppBundle\RepositoryManager\RepositoryManagers
+
+    packy.repository_manager.composer:
+        class: AppBundle\RepositoryManager\Bitbucket
+        tags:
+            - { name: packy_repository_manager, alias: bitbucket }
+
+    packy.repository_manager.npm:
+        class: AppBundle\RepositoryManager\Github
+        tags:
+            - { name: packy_repository_manager, alias: github }
+
+    packy.repository_manager.pip:
+        class: AppBundle\RepositoryManager\Gitlab
+        tags:
+            - { name: packy_repository_manager, alias: gitlab }

@@ -33,26 +33,23 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function getRootDir()
     {
-        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+        return __DIR__;
     }
 
     public function getCacheDir()
     {
-        if (in_array($this->environment, array('dev', 'test'))) {
-            return '/tmp/packy/cache/' .  $this->environment;
-        }
-
-        return parent::getCacheDir();
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        if (in_array($this->environment, array('dev', 'test'))) {
-            return '/tmp/packy/logs';
-        }
+        return dirname(__DIR__).'/var/logs';
+    }
 
-        return parent::getLogDir();
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
 }

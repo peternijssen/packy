@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ProjectUpdateCommand extends ContainerAwareCommand
 {
     /**
-     * Configure the command
+     * Configure the command.
      */
     protected function configure()
     {
@@ -30,37 +30,42 @@ class ProjectUpdateCommand extends ContainerAwareCommand
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $projectRepository = $this->getContainer()->get('packy.repository.project');
         $packageRepository = $this->getContainer()->get('packy.repository.package');
-        $analyzer = $this->getContainer()->get('packy.analyzer.generic_analyzer');
+        $repositoryManagers = $this->getContainer()->get('packy.repository_managers');
+        $dependencyManagers = $this->getContainer()->get('packy.dependency_managers');
+        $packageManagers = $this->getContainer()->get('packy.package_managers');
         $versionFormatter = $this->getContainer()->get('packy.service.version_formatter');
-        $fetchers = $this->getContainer()->get('packy.fetchers');
-        $fetchers = $fetchers->getFetchers();
 
         $projects = $projectRepository->findAll();
 
         foreach ($projects as $project) {
-            foreach ($fetchers as $fetcher) {
-                $dependencies = $fetcher->fetchDependencies($project);
+            $repository = $repositoryManagers->get($project->getRepositoryType());
+
+            foreach ($dependencyManagers->getAll() as $dependencyManager) {
+                $dependencies = $dependencyManager->fetchDependencies($repository, $project);
 
                 foreach ($dependencies as $name => $version) {
-                    $package = $packageRepository->findOne($name, $fetcher->getName());
-                    if (is_null($package)) {
+                    $package = $packageRepository->findOne($name, $dependencyManager->getName());
+                    if (null === $package) {
                         $package = new Package();
                         $package->setName($name);
-                        $package->setManager($fetcher->getName());
+                        $package->setManager($dependencyManager->getName());
                         $packageRepository->create($package);
                     }
 
-                    $package = $analyzer->analyzePackage($package, $package->getManager());
+                    $packageManager = $packageManagers->get($package->getManager());
+
+                    $package = $packageManager->analyzePackage($package);
                     $packageRepository->update($package);
 
                     $dependency = new Dependency();
@@ -73,7 +78,7 @@ class ProjectUpdateCommand extends ContainerAwareCommand
 
             $projectRepository->update($project);
 
-            $output->writeln("<info>Project ".$project->getName()." updated!</info>");
+            $output->writeln('<info>Project ' . $project->getName() . ' updated!</info>');
         }
     }
 }

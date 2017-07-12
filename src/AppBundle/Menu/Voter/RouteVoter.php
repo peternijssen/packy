@@ -13,7 +13,6 @@ namespace AppBundle\Menu\Voter;
 
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class RouteVoter implements VoterInterface
@@ -24,7 +23,7 @@ class RouteVoter implements VoterInterface
     private $requestStack;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param RequestStack $requestStack
      */
@@ -34,11 +33,11 @@ class RouteVoter implements VoterInterface
     }
 
     /**
-     * match item to route
+     * match item to route.
      *
      * @param ItemInterface $item
      *
-     * @return null|boolean true if the item is current, null if not
+     * @return null|bool true if the item is current, null if not
      */
     public function matchItem(ItemInterface $item)
     {
@@ -51,15 +50,15 @@ class RouteVoter implements VoterInterface
             return null;
         }
 
-        $routes = (array) $item->getExtra('routes', array());
+        $routes = (array) $item->getExtra('routes', []);
 
         foreach ($routes as $itemRoute) {
             if (isset($itemRoute['route'])) {
                 if (is_string($itemRoute['route'])) {
-                    $itemRoute = array(
+                    $itemRoute = [
                         'route' => $itemRoute['route'],
-                        'pattern' => '/'.$itemRoute['route'].'/',
-                    );
+                        'pattern' => '/' . $itemRoute['route'] . '/',
+                    ];
 
                     if ($this->isMatchingRoute($itemRoute)) {
                         return true;
@@ -72,11 +71,11 @@ class RouteVoter implements VoterInterface
     }
 
     /**
-     * Check if we can match a route
+     * Check if we can match a route.
      *
      * @param array $itemRoute An array with the route and the route pattern
      *
-     * @return boolean true if a match was found, false if not
+     * @return bool true if a match was found, false if not
      */
     private function isMatchingRoute(array $itemRoute)
     {
@@ -93,15 +92,16 @@ class RouteVoter implements VoterInterface
     }
 
     /**
-     * Get the base of the route
+     * Get the base of the route.
      *
      * @param $route
+     *
      * @return string
      */
     private function getBaseRoute($route)
     {
-        $chunks = explode("_", $route);
+        $chunks = explode('_', $route);
 
-        return implode("_", array_slice($chunks, 0, 2));
+        return implode('_', array_slice($chunks, 0, 2));
     }
 }

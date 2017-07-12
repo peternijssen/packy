@@ -17,23 +17,22 @@ use Doctrine\ORM\QueryBuilder;
 
 class PackageRepository
 {
-
     /**
-     * Entity alias
+     * Entity alias.
      *
      * @var string
      */
     const ENTITY_ALIAS = 'pa';
 
     /**
-     * Entity to use
+     * Entity to use.
      *
      * @var string
      */
     const ENTITY_CLASS = 'AppBundle:Package';
 
     /**
-     * Object manager
+     * Object manager.
      *
      * @var ObjectManager
      */
@@ -50,7 +49,7 @@ class PackageRepository
     }
 
     /**
-     * Find all packages
+     * Find all packages.
      *
      * @param string $sortField
      * @param string $sortOrder
@@ -60,13 +59,13 @@ class PackageRepository
     public function findAll($sortField = 'createdAt', $sortOrder = 'DESC')
     {
         return $this->getQueryBuilder()
-            ->orderBy(self::ENTITY_ALIAS.'.'.$sortField, $sortOrder)
+            ->orderBy(self::ENTITY_ALIAS . '.' . $sortField, $sortOrder)
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * Return one package
+     * Return one package.
      *
      * @param string $name
      * @param string $manager
@@ -78,8 +77,8 @@ class PackageRepository
     public function findOne($name, $manager)
     {
         return $this->getQueryBuilder()
-            ->where(self::ENTITY_ALIAS.'.name = :name')
-            ->andWhere(self::ENTITY_ALIAS.'.manager = :manager')
+            ->where(self::ENTITY_ALIAS . '.name = :name')
+            ->andWhere(self::ENTITY_ALIAS . '.manager = :manager')
             ->setParameter(':name', $name)
             ->setParameter(':manager', $manager)
             ->getQuery()
@@ -87,7 +86,7 @@ class PackageRepository
     }
 
     /**
-     * Create a package
+     * Create a package.
      *
      * @param Package $package
      */
@@ -98,7 +97,7 @@ class PackageRepository
     }
 
     /**
-     * Update a package
+     * Update a package.
      *
      * @param Package $package
      */
@@ -109,7 +108,7 @@ class PackageRepository
     }
 
     /**
-     * Delete a package
+     * Delete a package.
      *
      * @param Package $package
      */

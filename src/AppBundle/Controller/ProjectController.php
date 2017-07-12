@@ -13,17 +13,16 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Form\Type\ProjectFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ProjectController extends Controller
 {
-
     /**
-     * Project overview page
+     * Project overview page.
      *
      * @return Response A Response instance
      */
@@ -34,14 +33,14 @@ class ProjectController extends Controller
 
         return $this->render(
             'AppBundle:Project:overview.html.twig',
-            array(
+            [
                 'projects' => $projects,
-            )
+            ]
         );
     }
 
     /**
-     * Add project
+     * Add project.
      *
      * @param Request $request A Request instance
      *
@@ -63,11 +62,11 @@ class ProjectController extends Controller
         }
 
         return $this->render(
-            "AppBundle:Project:form.html.twig",
-            array(
+            'AppBundle:Project:form.html.twig',
+            [
                 'project' => $project,
                 'projectForm' => $projectForm->createView(),
-            )
+            ]
         );
     }
 
@@ -84,13 +83,13 @@ class ProjectController extends Controller
     {
         $dependencyRepository = $this->get('packy.repository.dependency');
 
-        $fetchers = $this->get('packy.fetchers');
-        $fetchers = $fetchers->getFetchers();
+        $dependencyManagers = $this->get('packy.dependency_managers');
+        $dependencyManagers = $dependencyManagers->getAll();
 
         //@TODO: Refactor
-        $vendors = array();
-        foreach ($fetchers as $fetcher) {
-            $name = $fetcher->getName();
+        $vendors = [];
+        foreach ($dependencyManagers as $manager) {
+            $name = $manager->getName();
             $dependencies = $dependencyRepository->findAllByManager($project, $name);
             if (!empty($dependencies)) {
                 $vendors[$name] = $dependencies;
@@ -98,11 +97,11 @@ class ProjectController extends Controller
         }
 
         //@TODO: BIG Refactor
-        $stats = array(
-            'outdated' => array(),
-            'unstable' => array(),
-            'stable' => array(),
-        );
+        $stats = [
+            'outdated' => [],
+            'unstable' => [],
+            'stable' => [],
+        ];
 
         foreach ($vendors as $name => $dependencies) {
             foreach ($stats as &$stat) {
@@ -118,16 +117,15 @@ class ProjectController extends Controller
                     }
                 }
             }
-
         }
 
         return $this->render(
-            "AppBundle:Project:analyze.html.twig",
-            array(
+            'AppBundle:Project:analyze.html.twig',
+            [
                 'project' => $project,
                 'vendors' => $vendors,
-                'stats' => $stats
-            )
+                'stats' => $stats,
+            ]
         );
     }
 
@@ -156,11 +154,11 @@ class ProjectController extends Controller
         }
 
         return $this->render(
-            "AppBundle:Project:form.html.twig",
-            array(
+            'AppBundle:Project:form.html.twig',
+            [
                 'project' => $project,
                 'projectForm' => $projectForm->createView(),
-            )
+            ]
         );
     }
 

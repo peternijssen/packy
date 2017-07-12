@@ -18,9 +18,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class InstallCommand extends Command
 {
-
     /**
-     * Configure the command
+     * Configure the command.
      */
     protected function configure()
     {
@@ -30,38 +29,39 @@ class InstallCommand extends Command
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find('doctrine:database:create');
-        $arguments = array(
+        $arguments = [
             'command' => 'doctrine:database:create',
             '--if-not-exists' => true,
             '--quiet' => true,
-        );
+        ];
         $input = new ArrayInput($arguments);
         $input->setInteractive(false);
         $command->run($input, $output);
 
         $command = $this->getApplication()->find('doctrine:migrations:migrate');
-        $arguments = array(
+        $arguments = [
             'command' => 'doctrine:migrations:migrate',
             '--quiet' => true,
-        );
+        ];
         $input = new ArrayInput($arguments);
         $input->setInteractive(false);
         $command->run($input, $output);
 
         $userCommand = $this->getApplication()->find('fos:user:create');
-        $arguments = array(
+        $arguments = [
             'command' => 'fos:user:create',
             '--super-admin' => true,
-        );
+        ];
         $input = new ArrayInput($arguments);
         $userCommand->run($input, $output);
     }

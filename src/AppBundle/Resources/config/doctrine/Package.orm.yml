@@ -24,7 +24,7 @@ AppBundle\Entity\Package:
             type: text
             nullable: true
             column: latest_version
-        lastChecktAt:
+        lastCheckAt:
             type: datetime
             nullable: true
             column: last_checked_at

@@ -26,9 +26,9 @@ class ProjectFormType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('repositoryType', ChoiceType::class, array(
-                'choices' => array('Github' => 'github'/*, 'gitlab' => 'gitlab', 'Bitbucket' => 'bitbucket'*/),
-            ))
+            ->add('repositoryType', ChoiceType::class, [
+                'choices' => ['Github' => 'github'/*, 'gitlab' => 'gitlab', 'Bitbucket' => 'bitbucket'*/],
+            ])
             ->add('repositoryUrl')
             ->add('vendorName')
             ->add('packageName')
@@ -41,9 +41,9 @@ class ProjectFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
             'data_class' => 'AppBundle\Entity\Project',
-            )
+            ]
         );
     }
 }

@@ -20,7 +20,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 class ReinstallCommand extends Command
 {
     /**
-     * Configure the command
+     * Configure the command.
      */
     protected function configure()
     {
@@ -30,10 +30,11 @@ class ReinstallCommand extends Command
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -49,20 +50,20 @@ class ReinstallCommand extends Command
         }
 
         $command = $this->getApplication()->find('doctrine:database:drop');
-        $arguments = array(
+        $arguments = [
             'command' => 'doctrine:database:drop',
             '--force' => true,
             '--quiet' => true,
-        );
+        ];
 
         $input = new ArrayInput($arguments);
         $input->setInteractive(false);
         $command->run($input, $output);
 
         $installCommand = $this->getApplication()->find('packy:install');
-        $arguments = array(
+        $arguments = [
             'command' => 'packy:install',
-        );
+        ];
         $installInput = new ArrayInput($arguments);
         $installCommand->run($installInput, $output);
     }

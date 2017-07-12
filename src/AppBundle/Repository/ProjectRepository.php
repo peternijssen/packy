@@ -17,23 +17,22 @@ use Doctrine\ORM\QueryBuilder;
 
 class ProjectRepository
 {
-
     /**
-     * Entity alias
+     * Entity alias.
      *
      * @var string
      */
     const ENTITY_ALIAS = 'p';
 
     /**
-     * Entity to use
+     * Entity to use.
      *
      * @var string
      */
     const ENTITY_CLASS = 'AppBundle:Project';
 
     /**
-     * Object manager
+     * Object manager.
      *
      * @var ObjectManager
      */
@@ -50,23 +49,23 @@ class ProjectRepository
     }
 
     /**
-     * Find all projects
+     * Find all projects.
      *
      * @param string $sortField
      * @param string $sortOrder
      *
-     * @return array
+     * @return Project[]
      */
     public function findAll($sortField = 'createdAt', $sortOrder = 'DESC')
     {
         return $this->getQueryBuilder()
-            ->orderBy(self::ENTITY_ALIAS.'.'.$sortField, $sortOrder)
+            ->orderBy(self::ENTITY_ALIAS . '.' . $sortField, $sortOrder)
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * Create a project
+     * Create a project.
      *
      * @param Project $project
      */
@@ -77,7 +76,7 @@ class ProjectRepository
     }
 
     /**
-     * Update a project
+     * Update a project.
      *
      * @param Project $project
      */
@@ -88,7 +87,7 @@ class ProjectRepository
     }
 
     /**
-     * Delete a project
+     * Delete a project.
      *
      * @param Project $project
      */

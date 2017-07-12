@@ -1,0 +1,18 @@
+services:
+    packy.package_managers:
+        class: AppBundle\PackageManager\PackageManagers
+
+    packy.package_manager.packagist:
+        class: AppBundle\PackageManager\Packagist
+        tags:
+            - { name: packy_package_manager, alias: composer }
+
+    packy.package_manager.pypi:
+        class: AppBundle\PackageManager\Pypi
+        tags:
+            - { name: packy_package_manager, alias: pip }
+
+    packy.package_manager.registry:
+        class: AppBundle\PackageManager\Registry
+        tags:
+            - { name: packy_package_manager, alias: npm }

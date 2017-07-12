@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * This file is part of Packy.
@@ -11,11 +11,12 @@
 
 namespace AppBundle\Entity;
 
+use Composer\Semver\Comparator;
+
 class Dependency
 {
-
     /**
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -50,173 +51,149 @@ class Dependency
     private $package;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set rawVersion
+     * Set rawVersion.
      *
      * @param string $rawVersion
-     *
-     * @return Dependency
      */
-    public function setRawVersion($rawVersion)
+    public function setRawVersion(string $rawVersion)
     {
         $this->rawVersion = $rawVersion;
-
-        return $this;
     }
 
     /**
-     * Get rawVersion
+     * Get rawVersion.
      *
      * @return string
      */
-    public function getRawVersion()
+    public function getRawVersion(): string
     {
         return $this->rawVersion;
     }
 
     /**
-     * Set currentVersion
+     * Set currentVersion.
      *
      * @param string $currentVersion
-     *
-     * @return Dependency
      */
-    public function setCurrentVersion($currentVersion)
+    public function setCurrentVersion(string $currentVersion)
     {
         $this->currentVersion = $currentVersion;
-
-        return $this;
     }
 
     /**
-     * Get currentVersion
+     * Get currentVersion.
      *
      * @return string
      */
-    public function getCurrentVersion()
+    public function getCurrentVersion(): string
     {
         return $this->currentVersion;
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param Project $project
-     *
-     * @return Dependency
      */
     public function setProject(Project $project = null)
     {
         $this->project = $project;
-
-        return $this;
     }
 
     /**
-     * Get project
+     * Get project.
      *
      * @return Project
      */
-    public function getProject()
+    public function getProject(): ?Project
     {
         return $this->project;
     }
 
     /**
-     * Set package
+     * Set package.
      *
      * @param Package $package
-     *
-     * @return Dependency
      */
     public function setPackage(Package $package = null)
     {
         $this->package = $package;
-
-        return $this;
     }
 
     /**
-     * Get package
+     * Get package.
      *
      * @return Package
      */
-    public function getPackage()
+    public function getPackage(): ?Package
     {
         return $this->package;
     }
 
     /**
-     * Get status
+     * Get status.
      *
-     * @return bool
+     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         if (preg_match('/[a-zA-Z]+$/', $this->getRawVersion())) {
-            return "unstable";
+            return 'unstable';
         }
 
-        if (version_compare($this->package->getLatestVersion(), $this->getCurrentVersion()) <= 0) {
-            return "stable";
+        if (Comparator::greaterThanOrEqualTo($this->getCurrentVersion(), $this->package->getLatestVersion())) {
+            return 'stable';
         }
 
-        return "outdated";
+        return 'outdated';
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param \DateTime $createdAt
-     *
-     * @return Dependency
+     * @param \DateTimeInterface $createdAt
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTimeInterface $createdAt)
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
-     * @param \DateTime $updatedAt
-     *
-     * @return Dependency
+     * @param \DateTimeInterface $updatedAt
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt(\DateTimeInterface $updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }

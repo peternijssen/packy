@@ -17,7 +17,6 @@ framework:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
     session:
         name:       PACKYSESSID
         save_path: "%kernel.root_dir%/sessions"
@@ -25,7 +24,7 @@ framework:
     fragments:       ~
     http_method_override: true
     assets:
-        version: 123
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
 
 # Twig Configuration
 twig:
@@ -43,8 +42,10 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
-        charset:  UTF8
-        server_version: 5.6
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collate: utf8mb4_unicode_ci
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         entity_managers:
@@ -57,7 +58,7 @@ doctrine:
 
 # Doctrine migrations
 doctrine_migrations:
-    dir_name: %kernel.root_dir%/migrations
+    dir_name: "%kernel.root_dir%/migrations"
 
 # Doctrine extensions
 stof_doctrine_extensions:
@@ -88,6 +89,9 @@ knp_menu:
 # Fos user
 fos_user:
     db_driver: orm
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
     firewall_name: main
     user_class: AppBundle\Entity\User
 

@@ -13,17 +13,16 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\UserFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class UserController extends Controller
 {
-
     /**
-     * User overview page
+     * User overview page.
      *
      * @return Response A Response instance
      */
@@ -34,14 +33,14 @@ class UserController extends Controller
 
         return $this->render(
             'AppBundle:User:overview.html.twig',
-            array(
+            [
                 'users' => $users,
-            )
+            ]
         );
     }
 
     /**
-     * Add user
+     * Add user.
      *
      * @param Request $request A Request instance
      *
@@ -65,11 +64,11 @@ class UserController extends Controller
         }
 
         return $this->render(
-            "AppBundle:User:form.html.twig",
-            array(
+            'AppBundle:User:form.html.twig',
+            [
                 'user' => $user,
                 'userForm' => $userForm->createView(),
-            )
+            ]
         );
     }
 
@@ -98,11 +97,11 @@ class UserController extends Controller
         }
 
         return $this->render(
-            "AppBundle:User:form.html.twig",
-            array(
+            'AppBundle:User:form.html.twig',
+            [
                 'user' => $user,
                 'userForm' => $userForm->createView(),
-            )
+            ]
         );
     }
 

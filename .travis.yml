@@ -1,23 +1,27 @@
 language: php
 
 php:
-  - 5.5
-  - 5.6
   - 7.0
-  - hhvm
+  - 7.1
 
 branches:
     only:
         - master
-        
-before_script: 
+
+before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - composer self-update
     - composer install --no-interaction --dev
     - php bin/console doctrine:database:create --env=test > /dev/null
     - php bin/console doctrine:schema:create --env=test > /dev/null
-    
-script: 
-    - phpunit --coverage-text --coverage-clover ./clover.xml
-    - wget https://scrutinizer-ci.com/ocular.phar
-    - php ocular.phar code-coverage:upload --format=php-clover ./clover.xml
+
+script:
+#    - phpunit --coverage-text --coverage-clover ./clover.xml
+#    - wget https://scrutinizer-ci.com/ocular.phar
+#    - php ocular.phar code-coverage:upload --format=php-clover ./clover.xml
+    - find -L 'src' -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+    - php bin/console lint:yaml src app
+    - php bin/console lint:twig src app
+    - php bin/console doctrine:schema:validate
+    - php vendor/bin/php-cs-fixer --dry-run fix src/
+    - php vendor/bin/phpstan analyse src  --level 1

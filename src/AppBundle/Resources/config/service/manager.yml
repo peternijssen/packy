@@ -1,5 +1,0 @@
-services:
-    packy.manager.adapter_factory:
-        class: AppBundle\Manager\AdapterFactory
-        arguments:
-            - "@packy.service.settings_service"

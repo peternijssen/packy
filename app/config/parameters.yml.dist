@@ -14,3 +14,4 @@ parameters:
     locale:            en
 
     secret:            9QBrFHIZ2PhlZuBn8i23QU10jKS00310
+    mailer_user:       ~

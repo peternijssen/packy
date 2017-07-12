@@ -4,19 +4,20 @@ AppBundle\Entity\Dependency:
 
     manyToOne:
         project:
-          targetEntity: Project
-          inversedBy: dependencies
-          joinColumn:
-            name: project_id
-            referencedColumnName: id
-          cascade: ["persist"]
+            targetEntity: Project
+            inversedBy: dependencies
+            joinColumn:
+                name: project_id
+                referencedColumnName: id
+            cascade: ["persist"]
         package:
-          targetEntity: Package
-          inversedBy: dependencies
-          joinColumn:
-            name: package_id
-            referencedColumnName: id
-          cascade: ["persist"]
+            targetEntity: Package
+            inversedBy: dependencies
+            joinColumn:
+                name: package_id
+                referencedColumnName: id
+            cascade: ["persist"]
+            fetch: EAGER
     id:
         id:
             type: integer

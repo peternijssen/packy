@@ -28,18 +28,18 @@ class UserFormType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('email')
-            ->add('roles', CollectionType::class, array(
+            ->add('roles', CollectionType::class, [
                 'entry_type' => ChoiceType::class,
-                'entry_options' => array(
-                    'choices' => array(
+                'entry_options' => [
+                    'choices' => [
                         'Admin' => 'ROLE_ADMIN',
                         'Developer' => 'ROLE_DEVELOPER',
-                        'Viewer' => 'ROLE_VIEWER'
-                    ),
+                        'Viewer' => 'ROLE_VIEWER',
+                    ],
                     'choices_as_values' => true,
                     'label' => false,
-                ),
-            ));
+                ],
+            ]);
     }
 
     /**
@@ -48,9 +48,9 @@ class UserFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
             'data_class' => 'AppBundle\Entity\User',
-            )
+            ]
         );
     }
 }

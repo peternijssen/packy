@@ -6,6 +6,11 @@
     {{ parent() }} | Projects
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/highcharts.css') }}"/>
+{% endblock %}
+
 {% block headerContent %}
     <h1>
         Projects
@@ -65,7 +70,7 @@
                     </h3>
                 </div>
                 <div class="box-body">
-                    <div class="column-chart">
+                    <div id="column-chart">
 
                     </div>
                 </div>
@@ -76,9 +81,10 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('build/highcharts.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            $('.column-chart').highcharts({
+            Highcharts.chart('column-chart', {
                 chart: {
                     backgroundColor: 'rgba(0,0,0,0)',
                     plotBackgroundColor: null,
@@ -111,7 +117,7 @@
                 },
                 plotOptions: {
                     column: {
-                        stacking: 'percent'
+                        stacking: 'percent',
                     }
                 },
                 colors: [

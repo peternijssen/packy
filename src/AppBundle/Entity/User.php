@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * This file is part of Packy.
@@ -16,7 +16,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -31,17 +31,17 @@ class User extends BaseUser
     private $lastName;
 
     /**
-     * @var \DateTime $createdAt
+     * @var \DateTime
      */
     private $createdAt;
 
     /**
-     * @var \DateTime $updatedAt
+     * @var \DateTime
      */
     private $updatedAt;
 
     /**
-     * @var \DateTime $deletedAt
+     * @var \DateTime
      */
     private $deletedAt;
 
@@ -52,10 +52,11 @@ class User extends BaseUser
     {
         parent::__construct();
     }
+
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -63,7 +64,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get first name of user
+     * Get first name of user.
      *
      * @return string
      */
@@ -73,7 +74,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set user first name
+     * Set user first name.
      *
      * @param string $firstName
      *
@@ -87,7 +88,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get last name of user
+     * Get last name of user.
      *
      * @return string
      */
@@ -97,7 +98,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set user last name
+     * Set user last name.
      *
      * @param string $lastName
      *
@@ -111,17 +112,17 @@ class User extends BaseUser
     }
 
     /**
-     * Get the name of a user
+     * Get the name of a user.
      *
      * @return string
      */
     public function getName()
     {
-        return $this->getFirstName()." ".$this->getLastName();
+        return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
     /**
-     * Get creation date
+     * Get creation date.
      *
      * @return \DateTime
      */
@@ -131,7 +132,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get update date
+     * Get update date.
      *
      * @return \DateTime
      */
@@ -141,7 +142,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get deletion date
+     * Get deletion date.
      *
      * @return \DateTime
      */
@@ -151,7 +152,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set deletion date
+     * Set deletion date.
      *
      * @param \DateTime $deletedAt
      */
@@ -161,9 +162,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return User
      */
     public function setCreatedAt($createdAt)
@@ -174,9 +176,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
+     *
      * @return User
      */
     public function setUpdatedAt($updatedAt)

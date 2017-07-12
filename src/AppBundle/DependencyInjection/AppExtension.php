@@ -11,23 +11,23 @@
 
 namespace AppBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class AppExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('service/analyzer.yml');
-        $loader->load('service/fetcher.yml');
-        $loader->load('service/manager.yml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('service/dependency_managers.yml');
+        $loader->load('service/package_managers.yml');
         $loader->load('service/repository.yml');
+        $loader->load('service/repository_managers.yml');
         $loader->load('service/service.yml');
     }
 }

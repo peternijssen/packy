@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class PackageUpdateCommand extends ContainerAwareCommand
 {
     /**
-     * Configure the command
+     * Configure the command.
      */
     protected function configure()
     {
@@ -28,22 +28,24 @@ class PackageUpdateCommand extends ContainerAwareCommand
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $packageRepository = $this->getContainer()->get('packy.repository.package');
+        $packageManagers = $this->getContainer()->get('packy.package_managers');
         $packages = $packageRepository->findAll();
 
         foreach ($packages as $package) {
-            $analyzer = $this->getContainer()->get('packy.analyzer.generic_analyzer');
-            $package = $analyzer->analyzePackage($package, $package->getManager());
+            $packageManager = $packageManagers->get($package->getManager());
+            $package = $packageManager->analyzePackage($package);
             $packageRepository->update($package);
-            $output->writeln("<info>Package ".$package->getName()." updated!</info>");
+            $output->writeln('<info>Package ' . $package->getName() . ' updated!</info>');
         }
     }
 }

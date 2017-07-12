@@ -17,23 +17,22 @@ use Doctrine\ORM\QueryBuilder;
 
 class DependencyRepository
 {
-
     /**
-     * Entity alias
+     * Entity alias.
      *
      * @var string
      */
     const ENTITY_ALIAS = 'd';
 
     /**
-     * Entity to use
+     * Entity to use.
      *
      * @var string
      */
     const ENTITY_CLASS = 'AppBundle:Dependency';
 
     /**
-     * Object manager
+     * Object manager.
      *
      * @var ObjectManager
      */
@@ -50,7 +49,7 @@ class DependencyRepository
     }
 
     /**
-     * Find all dependencies for a certain manager
+     * Find all dependencies for a certain manager.
      *
      * @param Project $project
      * @param string  $sortField
@@ -61,8 +60,8 @@ class DependencyRepository
     public function findAllByProject(Project $project, $sortField = 'pa.name', $sortOrder = 'ASC')
     {
         return $this->getQueryBuilder()
-            ->leftJoin(self::ENTITY_ALIAS.'.project', 'p')
-            ->leftJoin(self::ENTITY_ALIAS.'.package', 'pa')
+            ->leftJoin(self::ENTITY_ALIAS . '.project', 'p')
+            ->leftJoin(self::ENTITY_ALIAS . '.package', 'pa')
             ->where('p = :project')
             ->setParameter('project', $project)
             ->orderBy($sortField, $sortOrder)
@@ -71,7 +70,7 @@ class DependencyRepository
     }
 
     /**
-     * Find all dependencies for a certain project and manager
+     * Find all dependencies for a certain project and manager.
      *
      * @param Project $project
      * @param string  $manager
@@ -83,8 +82,8 @@ class DependencyRepository
     public function findAllByManager(Project $project, $manager, $sortField = 'pa.name', $sortOrder = 'ASC')
     {
         return $this->getQueryBuilder()
-            ->leftJoin(self::ENTITY_ALIAS.'.project', 'p')
-            ->leftJoin(self::ENTITY_ALIAS.'.package', 'pa')
+            ->leftJoin(self::ENTITY_ALIAS . '.project', 'p')
+            ->leftJoin(self::ENTITY_ALIAS . '.package', 'pa')
             ->where('p = :project')
             ->andWhere('pa.manager = :manager')
             ->setParameter('project', $project)

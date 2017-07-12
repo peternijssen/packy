@@ -40,7 +40,7 @@ class Builder
     }
 
     /**
-     * Create the side menu
+     * Create the side menu.
      *
      * @return ItemInterface
      */
@@ -51,12 +51,12 @@ class Builder
 
         $menu->addChild(
             'Projects',
-            array(
+            [
                 'route' => 'packy_project_overview',
-                'extras' => array(
+                'extras' => [
                     'icon' => 'fa-tasks fa-fw',
-                ),
-            )
+                ],
+            ]
         );
 
         if ($this->security->isGranted('ROLE_ADMIN')) {
@@ -71,32 +71,6 @@ class Builder
             );
         }
 
-        /*$settingsMenu = $menu->addChild(
-            'Settings',
-            array(
-                'childrenAttributes' => array('class' => 'treeview-menu'),
-                'route' => 'packy_settings_overview',
-                'attributes' => array('class' => 'treeview'),
-                'extras' => array(
-                    'icon' => 'fa-cogs fa-fw',
-                ),
-            )
-        );
-
-        $this->settingsMenu($settingsMenu);*/
-
-        return $menu;
-    }
-
-    /**
-     * Settings sub menu
-     *
-     * @param ItemInterface $menu
-     *
-     * @return ItemInterface
-     */
-    protected function settingsMenu(ItemInterface $menu)
-    {
         return $menu;
     }
 }

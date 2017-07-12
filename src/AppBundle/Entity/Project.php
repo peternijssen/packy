@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * This file is part of Packy.
@@ -11,14 +11,13 @@
 
 namespace AppBundle\Entity;
 
-use \Doctrine\Common\Collections\Collection;
-use \Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Project
 {
-
     /**
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -78,7 +77,7 @@ class Project
     private $dependencies;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -86,95 +85,81 @@ class Project
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
-     *
-     * @return Project
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
-     *
-     * @return Project
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
-
-        return $this;
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
-     * Set repositoryUrl
+     * Set repositoryUrl.
      *
      * @param string $repositoryUrl
-     *
-     * @return Project
      */
-    public function setRepositoryUrl($repositoryUrl)
+    public function setRepositoryUrl(string $repositoryUrl)
     {
         $this->repositoryUrl = $repositoryUrl;
-
-        return $this;
     }
 
     /**
-     * Get repositoryUrl
+     * Get repositoryUrl.
      *
      * @return string
      */
-    public function getRepositoryUrl()
+    public function getRepositoryUrl(): string
     {
         return $this->repositoryUrl;
     }
 
     /**
-     * Add dependencies
+     * Add dependencies.
      *
      * @TODO: Refactor
      *
      * @param Dependency $dependency
-     *
-     * @return Project
      */
     public function addDependency(Dependency $dependency)
     {
@@ -191,12 +176,10 @@ class Project
         }
 
         $this->dependencies[] = $dependency;
-
-        return $this;
     }
 
     /**
-     * Remove dependencies
+     * Remove dependencies.
      *
      * @param Dependency $dependency
      */
@@ -206,121 +189,105 @@ class Project
     }
 
     /**
-     * Get dependencies
+     * Get dependencies.
      *
      * @return Collection
      */
-    public function getDependencies()
+    public function getDependencies(): Collection
     {
         return $this->dependencies;
     }
 
     /**
-     * Set repositoryType
+     * Set repositoryType.
      *
      * @param string $repositoryType
-     *
-     * @return Project
      */
-    public function setRepositoryType($repositoryType)
+    public function setRepositoryType(string $repositoryType)
     {
         $this->repositoryType = $repositoryType;
-
-        return $this;
     }
 
     /**
-     * Get repositoryType
+     * Get repositoryType.
      *
      * @return string
      */
-    public function getRepositoryType()
+    public function getRepositoryType(): string
     {
         return $this->repositoryType;
     }
 
     /**
-     * Set vendorName
+     * Set vendorName.
      *
      * @param string $vendorName
-     *
-     * @return Project
      */
     public function setVendorName($vendorName)
     {
         $this->vendorName = $vendorName;
-
-        return $this;
     }
 
     /**
-     * Get vendorName
+     * Get vendorName.
      *
      * @return string
      */
-    public function getVendorName()
+    public function getVendorName(): string
     {
         return $this->vendorName;
     }
 
     /**
-     * Set packageName
+     * Set packageName.
      *
      * @param string $packageName
-     *
-     * @return Project
      */
-    public function setPackageName($packageName)
+    public function setPackageName(string $packageName)
     {
         $this->packageName = $packageName;
-
-        return $this;
     }
 
     /**
-     * Get packageName
+     * Get packageName.
      *
      * @return string
      */
-    public function getPackageName()
+    public function getPackageName(): string
     {
         return $this->packageName;
     }
 
     /**
-     * Set branch
+     * Set branch.
      *
      * @param string $branch
-     *
-     * @return Project
      */
-    public function setBranch($branch)
+    public function setBranch(string $branch)
     {
         $this->branch = $branch;
-
-        return $this;
     }
 
     /**
-     * Get branch
+     * Get branch.
      *
      * @return string
      */
-    public function getBranch()
+    public function getBranch(): string
     {
         return $this->branch;
     }
 
     /**
-     * Get the total stats
+     * Get the total stats.
      *
      * @todo: Refactor into a service
      *
      * @return array
      */
-    public function getTotalStats()
+    public function getTotalStats(): array
     {
-        $stats = array("unstable" => 0, "stable" => 0, "outdated" => 0);
+        $stats = ['unstable' => 0, 'stable' => 0, 'outdated' => 0];
 
         foreach ($this->getDependencies() as $dependency) {
             $stats[$dependency->getStatus()] += 1;
@@ -330,73 +297,63 @@ class Project
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param \DateTime $createdAt
-     *
-     * @return Project
+     * @param \DateTimeInterface $createdAt
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTimeInterface $createdAt)
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
-     * @param \DateTime $updatedAt
+     * @param \DateTimeInterface $updatedAt
      *
      * @return Project
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTimeInterface $updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }
 
     /**
-     * Set deletedAt
+     * Set deletedAt.
      *
-     * @param \DateTime $deletedAt
-     *
-     * @return Project
+     * @param \DateTimeInterface $deletedAt
      */
-    public function setDeletedAt($deletedAt)
+    public function setDeletedAt(\DateTimeInterface $deletedAt = null)
     {
         $this->deletedAt = $deletedAt;
-
-        return $this;
     }
 
     /**
-     * Get deletedAt
+     * Get deletedAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface|null
      */
-    public function getDeletedAt()
+    public function getDeletedAt(): ?\DateTimeInterface
     {
         return $this->deletedAt;
     }

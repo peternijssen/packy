@@ -11,7 +11,9 @@
 
 namespace AppBundle;
 
-use AppBundle\DependencyInjection\Compiler\FetcherCompilerPass;
+use AppBundle\DependencyInjection\Compiler\DependencyManagerCompilerPass;
+use AppBundle\DependencyInjection\Compiler\RepositoryManagerCompilerPass;
+use AppBundle\DependencyInjection\Compiler\PackageManagerCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -21,6 +23,8 @@ class AppBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new FetcherCompilerPass());
+        $container->addCompilerPass(new DependencyManagerCompilerPass());
+        $container->addCompilerPass(new RepositoryManagerCompilerPass());
+        $container->addCompilerPass(new PackageManagerCompilerPass());
     }
 }

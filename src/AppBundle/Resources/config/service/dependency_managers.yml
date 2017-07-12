@@ -1,0 +1,18 @@
+services:
+    packy.dependency_managers:
+        class: AppBundle\DependencyManager\DependencyManagers
+
+    packy.dependency_manager.composer:
+        class: AppBundle\DependencyManager\Composer
+        tags:
+            - { name: packy_dependency_manager, alias: composer }
+
+    packy.dependency_manager.npm:
+        class: AppBundle\DependencyManager\Npm
+        tags:
+            - { name: packy_dependency_manager, alias: npm }
+
+    packy.dependency_manager.pip:
+        class: AppBundle\DependencyManager\Pip
+        tags:
+            - { name: packy_dependency_manager, alias: pip }

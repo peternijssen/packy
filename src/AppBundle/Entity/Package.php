@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * This file is part of Packy.
@@ -11,14 +11,13 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Package
 {
-
     /**
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -40,7 +39,7 @@ class Package
     /**
      * @var \DateTime
      */
-    private $lastChecktAt;
+    private $lastCheckAt;
 
     /**
      * @var \DateTime
@@ -58,7 +57,7 @@ class Package
     private $dependencies;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -66,171 +65,147 @@ class Package
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
-     *
-     * @return Package
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * Set manager
+     * Set manager.
      *
      * @param string $manager
-     * @return Package
      */
-    public function setManager($manager)
+    public function setManager(string $manager)
     {
         $this->manager = $manager;
-
-        return $this;
     }
 
     /**
-     * Get manager
+     * Get manager.
      *
      * @return string
      */
-    public function getManager()
+    public function getManager(): string
     {
         return $this->manager;
     }
 
     /**
-     * Set latestVersion
+     * Set latestVersion.
      *
      * @param string $latestVersion
-     * @return Package
      */
-    public function setLatestVersion($latestVersion)
+    public function setLatestVersion(string $latestVersion)
     {
         $this->latestVersion = $latestVersion;
-
-        return $this;
     }
 
     /**
-     * Get latestVersion
+     * Get latestVersion.
      *
-     * @return string
+     * @return string|null
      */
-    public function getLatestVersion()
+    public function getLatestVersion(): ?string
     {
         return $this->latestVersion;
     }
 
     /**
-     * Set lastChecktAt
+     * Set $lastCheckAt.
      *
-     * @param \DateTime $lastChecktAt
-     *
-     * @return Package
+     * @param \DateTimeInterface $lastCheckAt
      */
-    public function setLastChecktAt(\DateTime $lastChecktAt)
+    public function setLastCheckAt(\DateTimeInterface $lastCheckAt)
     {
-        $this->lastChecktAt = $lastChecktAt;
-
-        return $this;
+        $this->lastCheckAt = $lastCheckAt;
     }
 
     /**
-     * Get lastChecktAt
+     * Get lastCheckAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getLastChecktAt()
+    public function getLastCheckAt(): \DateTimeInterface
     {
-        return $this->lastChecktAt;
+        return $this->lastCheckAt;
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param \DateTime $createdAt
-     *
-     * @return Package
+     * @param \DateTimeInterface $createdAt
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTimeInterface $createdAt)
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
-     * @param \DateTime $updatedAt
-     * @return Package
+     * @param \DateTimeInterface $updatedAt
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt(\DateTimeInterface $updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }
 
     /**
-     * Add dependencies
+     * Add dependencies.
      *
      * @param Dependency $dependencies
-     * @return Package
      */
     public function addDependency(Dependency $dependencies)
     {
         $this->dependencies[] = $dependencies;
-
-        return $this;
     }
 
     /**
-     * Remove dependencies
+     * Remove dependencies.
      *
      * @param Dependency $dependencies
      */
@@ -240,11 +215,11 @@ class Package
     }
 
     /**
-     * Get dependencies
+     * Get dependencies.
      *
      * @return Collection
      */
-    public function getDependencies()
+    public function getDependencies(): Collection
     {
         return $this->dependencies;
     }

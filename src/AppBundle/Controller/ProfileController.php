@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ProfileController extends Controller
 {
     /**
-     * Change password user
+     * Change password user.
      *
      * @param Request $request A Request instance
      *
@@ -33,8 +33,7 @@ class ProfileController extends Controller
         if ($request->isMethod('POST')) {
             $profileForm->handleRequest($request);
             if ($profileForm->isValid()) {
-
-                if (0 !== strlen($user->getPlainPassword())) {
+                if (0 !== mb_strlen($user->getPlainPassword())) {
                     $encoder = $this->container->get('security.password_encoder');
                     $user->setPassword($encoder->encodePassword($user, $user->getPlainPassword()));
                     $user->eraseCredentials();
@@ -48,7 +47,7 @@ class ProfileController extends Controller
         }
 
         return $this->render(
-            "AppBundle:Profile:change_password.html.twig",
+            'AppBundle:Profile:change_password.html.twig',
             [
                 'user' => $user,
                 'profileForm' => $profileForm->createView(),
